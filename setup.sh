@@ -4,7 +4,7 @@
 ln -sv ~/.dotfiles/zsh/zshrc ~/.zshrc
 
 # tmux
-ln -sv ~/.dorfiles/tmux/tmux.conf ~/.tmux.conf
+ln -sv ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 ln -sv ~/.dotfiles/tmux/tmux ~/.tmux
 
 # git
