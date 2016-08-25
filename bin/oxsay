@@ -1,0 +1,60 @@
+#!/bin/sh
+
+RANGE=`cowsay -l | tail -n +2 | tr ' ' '\n' | wc -l | sed 's/ //g'`
+Number=$((`echo $RANDOM` % $range + 1))
+MODE=`cowsay -l | tail -n +2 | tr ' ' '\n' | awk -v n=$luckyNumber 'NR == n'`
+
+#if [ ! `getopts ":n:fw:" opt`] ; then
+	#echo "Usage: `basename $0` options [-n value] [-f] [-w value] -h for help"
+	#exit $E_OPTERROR;
+#fi
+
+while getopts ":n:fw:" opt; do
+  	case $opt in
+    	n)
+			ROUNDS=$OPTARG
+      		echo "-n was triggered, Parameter: $OPTARG" >&2
+      		;;
+    	f)
+			FIGLET=1
+			echo "-f was triggered, Parameter: $OPTARG" >&2
+			;;
+		w)
+			WORDS=$OPTARG
+			echo "-w was triggered, Parameter: $OPTARG" >&2
+			;;
+		\?)
+      		echo "Invalid option: -$OPTARG" >&2
+      		exit 1
+      		;;
+    	:)
+     	 	echo "Option -$OPTARG requires an argument." >&2
+      		exit 1
+      		;;
+ 	 esac
+done
+
+#if [ $# -eq 0 ]; then 
+	#fortune | cowsay -f "$cowsayMode"
+#elif [ $# -eq 2 ]; then
+	#if [ "$1" == "-f" ]; then
+		#words=$2
+		#figlet $words | cowsay -n -f "$cowsayMode"
+	#else
+		#figlet "JIZZ" | cowsay -n -f "$cowsayMode"
+	#fi
+#elif [ $# -eq 3 ]; then
+	#if [ "$1" == "-n" ]; then
+		#echo "$3" > ~/_oxsayTempFile0
+		#for i in `seq 1 $2`; do
+			#random=`echo $RANDOM`
+			#luckyNumber=$(($random % $range + 1))
+			#cowsayMode=`cowsay -l | tail -n +2 | tr ' ' '\n' | awk -v n=$luckyNumber 'NR == n'`
+			#cat ~/_oxsayTempFile"$((i - 1))" | cowsay -n -f "$cowsayMode" > ~/_oxsayTempFile"$i"
+		#done
+		#cat ~/_oxsayTempFile"$2"
+		#rm -f ~/_oxsayTempFile*
+	#fi
+#else
+	#figlet "JIZZ" | cowsay -n -f "$cowsayMode"
+#fi
