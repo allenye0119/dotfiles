@@ -1,0 +1,62 @@
+" Vundle
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'powerline/powerline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'Townk/vim-autoclose'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'valloric/youcompleteme'
+
+call vundle#end()
+filetype plugin indent on
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :h vundle         - more details or wiki for FAQ
+
+" Plugin Setting 
+" powerline
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
+" nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd vimenter * NERDTree
+
+" General
+syntax on
+set wildmenu
+set foldenable
+set laststatus=2
+set mouse=a
+
+" Theme
+set t_Co=256
+set background=dark
+colorscheme solarized
+
+" Tab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smartindent
+set ai
+
+" Search
+set showmatch
+set incsearch
+set hlsearch
+
+" Line Number
+set number
+set nuw=6
+set relativenumber
+" highlight LineNr ctermbg=15
