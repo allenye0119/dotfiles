@@ -6,30 +6,65 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'powerline/powerline'
+
+Plugin 'ryanoasis/vim-devicons'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
+Plugin 'xuyuanp/nerdtree-git-plugin'
+
 Plugin 'scrooloose/syntastic'
 Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'valloric/youcompleteme'
 
 call vundle#end()
 filetype plugin indent on
 
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-" :h vundle         - more details or wiki for FAQ
-
-" Plugin Setting 
-" powerline
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim/
 " nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" devicons
+set encoding=utf8
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_conceal_nerdtree_brackets = 0
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+
+" airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''"
 
 " General
 syntax on
@@ -40,13 +75,8 @@ set mouse=a
 " Theme
 set t_Co=256
 set background=dark
-"colorscheme solarized
+colorscheme solarized
 
-" Status bar
-set laststatus=2
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " Tab
 set tabstop=4
@@ -64,4 +94,3 @@ set hlsearch
 set number
 set nuw=6
 set relativenumber
-" highlight LineNr ctermbg=15
