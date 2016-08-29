@@ -11,6 +11,7 @@ Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'edkolev/tmuxline.vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
@@ -78,7 +79,6 @@ set mouse=a
 set t_Co=256
 set background=dark
 colorscheme solarized
-
 
 " Tab
 set tabstop=4
