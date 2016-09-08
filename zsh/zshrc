@@ -86,4 +86,5 @@ export PATH=$PATH:~/bin
 export TERM="screen-256color"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-#. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+export EDITOR="vim"
+source ~/bin/tmuxinator.zsh
