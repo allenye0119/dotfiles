@@ -1,0 +1,16 @@
+# !/bin/sh
+
+if [ $# -eq 0 ]; then
+	echo '-p/--python	update all python packages via pip'
+	echo '-b/--brew	update all mac packages via homebrew'
+elif [ $# -eq 1 ]; then
+	if [ $1 = '-p' -o $1 = '--python' ]; then
+		pip list | cut -d ' ' -f 1 | xargs -n1 pip install -U
+	elif [ $1 = '-b' -o $1 = '--brew' ]; then
+		brew update && brew upgrade
+	else
+		figlet JIZZ
+	fi
+else
+	figlet JIZZ
+fi
