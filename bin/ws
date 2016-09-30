@@ -21,8 +21,8 @@ elif [ $# -eq 1 ]; then
 		done
 	elif [ $1 = -s ]; then
 		sftp b04902102@linux9.csie.ntu.edu.tw
-	elif [ $1 = -sinica ]; then
-		ssh allenye0119@skyrim3.iis.sinica.edu.tw
+	elif [ $1 = -l ]; then
+		ssh allenye0119@cl5.learner.csie.ntu.edu.tw
 	else
 		figlet JIZZ
 	fi

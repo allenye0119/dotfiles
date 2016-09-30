@@ -96,3 +96,6 @@ set hlsearch
 set number
 set nuw=6
 set relativenumber
+
+" Backspace
+set backspace=indent,eol,start
