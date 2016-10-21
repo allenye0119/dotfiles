@@ -89,3 +89,4 @@ export LANG=en_US.UTF-8
 export EDITOR="vim"
 #source ~/bin/tmuxinator.zsh
 #eval $(thefuck --alias)
+alias ntu="cd ~/Documents/NTU_Fall_16"
