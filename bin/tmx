@@ -1,6 +1,0 @@
-# !/bin/sh
-
-read -p 'Enter tmuxinator template (default: default): ' TEMPLATE
-read -p 'Enter project name: ' PROJECT; 
-read -p 'Enter root path (relative to home directory): ' ROOT;
-tmuxinator start ${TEMPLATE:-default} project=$PROJECT root=$ROOT
