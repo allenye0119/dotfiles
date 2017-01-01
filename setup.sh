@@ -16,3 +16,10 @@ ln -sfv ~/.dotfiles/vim/UltiSnips ~/.vim/UltiSnips
 
 # R
 ln -sfv ~/.dotfiles/R/Rprofile ~/.Rprofile
+
+# ptpython
+if [ ! -d ~/.ptpython ]; then
+	mkdir ~/.ptpython
+fi
+ln -sfv ~/.dotfiles/ptpython/config.py ~/.ptpython/config.py
+
