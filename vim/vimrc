@@ -19,6 +19,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'sirver/ultisnips'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 filetype plugin indent on
