@@ -12,7 +12,6 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
@@ -20,9 +19,14 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'sirver/ultisnips'
 Plugin 'elzr/vim-json'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
+
+" nerdcommenter
+inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
+noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 
 " nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -67,7 +71,7 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''"
+let g:airline_symbols.linenr = ''
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -86,7 +90,6 @@ set background=dark
 colorscheme solarized
 
 " Tab
-
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -106,16 +109,44 @@ set relativenumber
 " Backspace
 set backspace=indent,eol,start
 
-" Tab navigating
-"map <D-S-]> gt
-"map <D-S-[> gT
-"map <D-1> 1gt
-"map <D-2> 2gt
-"map <D-3> 3gt
-"map <D-4> 4gt
-"map <D-5> 5gt
-"map <D-6> 6gt
-"map <D-7> 7gt
-"map <D-8> 8gt
-"map <D-9> 9gt
-"map <D-0> :tablast<CR>]
+set timeoutlen=500
+
+" Buffer
+set hidden
+
+" Mappings
+let mapleader=' '
+
+inoremap kj <esc>
+inoremap jk <esc>
+
+nnoremap H ^
+nnoremap L $
+
+nnoremap _ ddp
+nnoremap - ddkP
+
+inoremap <c-d> <esc>ddi
+inoremap <c-u> <esc>ui
+
+nnoremap <c-c> viw~
+inoremap <c-c> <esc>lviw~i
+
+nnoremap <leader>sv :source ~/.vimrc<CR>
+nnoremap <leader>ev :vsplit ~/.vimrc<CR>
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <silent> <leader><CR> :nohl<CR>
+
+nnoremap <leader>pp :setlocal paste!<CR>
+
+nnoremap pp Vyp
+
+inoremap <c-h> <esc>:bp<CR>
+inoremap <c-l> <esc>:bn<CR>
+nnoremap <c-h> :bp<CR>
+nnoremap <c-l> :bn<CR>
+
+" autocommand
+autocmd CursorHoldI * :write
