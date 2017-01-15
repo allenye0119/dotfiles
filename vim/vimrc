@@ -24,7 +24,9 @@ Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
-" nerdcommenter
+let mapleader=','
+
+ "nerdcommenter
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 
@@ -115,7 +117,6 @@ set timeoutlen=500
 set hidden
 
 " Mappings
-let mapleader=' '
 
 inoremap kj <esc>
 inoremap jk <esc>
@@ -136,6 +137,7 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 nnoremap <leader>ev :vsplit ~/.vimrc<CR>
 
 nnoremap <leader>w :w<CR>
+nnoremap <leader>x :bw<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <silent> <leader><CR> :nohl<CR>
 
