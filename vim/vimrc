@@ -137,8 +137,9 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 nnoremap <leader>ev :vsplit ~/.vimrc<CR>
 
 nnoremap <leader>w :w<CR>
-nnoremap <leader>x :bw<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>x :bw<CR>
+nnoremap <leader>e :e 
 nnoremap <silent> <leader><CR> :nohl<CR>
 
 nnoremap <leader>pp :setlocal paste!<CR>
@@ -151,4 +152,4 @@ nnoremap <c-h> :bp<CR>
 nnoremap <c-l> :bn<CR>
 
 " autocommand
-autocmd CursorHoldI * :write
+"autocmd CursorHoldI * :write
