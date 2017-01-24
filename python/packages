@@ -172,7 +172,6 @@ traitlets==4.3.0
 Twisted==16.4.1
 uncompyle2==2.0.0
 uncompyle6==2.8.3
-vboxapi==1.0
 virtualenv==15.0.3
 virtualenv-clone==0.2.6
 virtualenvwrapper==4.7.2
@@ -181,4 +180,3 @@ wcwidth==0.1.7
 Werkzeug==0.11.11
 widgetsnbextension==1.2.6
 xdis==2.3.2
-zope.interface==4.3.2
