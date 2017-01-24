@@ -20,6 +20,8 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'sirver/ultisnips'
 Plugin 'elzr/vim-json'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'valloric/youcompleteme'
 
 call vundle#end()
 filetype plugin indent on
@@ -149,4 +151,4 @@ nnoremap <c-h> :bp<CR>
 nnoremap <c-l> :bn<CR>
 
 " autocommand
-autocmd CursorHoldI * :write
+"autocmd CursorHoldI * :write
