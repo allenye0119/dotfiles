@@ -26,7 +26,9 @@ Plugin 'valloric/youcompleteme'
 call vundle#end()
 filetype plugin indent on
 
-" nerdcommenter
+let mapleader=','
+
+ "nerdcommenter
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 
@@ -117,7 +119,6 @@ set timeoutlen=500
 set hidden
 
 " Mappings
-let mapleader=' '
 
 inoremap kj <esc>
 inoremap jk <esc>
@@ -139,6 +140,8 @@ nnoremap <leader>ev :vsplit ~/.vimrc<CR>
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>x :bw<CR>
+nnoremap <leader>e :e 
 nnoremap <silent> <leader><CR> :nohl<CR>
 
 nnoremap <leader>pp :setlocal paste!<CR>
@@ -151,4 +154,5 @@ nnoremap <c-h> :bp<CR>
 nnoremap <c-l> :bn<CR>
 
 " autocommand
-"autocmd CursorHoldI * :write
+autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+	\| exe "normal! g'\"" | endif

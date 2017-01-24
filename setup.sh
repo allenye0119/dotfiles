@@ -23,3 +23,6 @@ if [ ! -d ~/.ptpython ]; then
 fi
 ln -sfv ~/.dotfiles/ptpython/config.py ~/.ptpython/config.py
 
+# dircolors
+ln -sfv ~/.dotfiles/dir_colors/dircolors.256dark ~/.dir_colors
+
