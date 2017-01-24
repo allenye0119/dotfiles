@@ -1,0 +1,39 @@
+# !/bin/zsh
+
+if [ $# -eq 0 ]; then
+	ssh -t b04902102@linux8.csie.ntu.edu.tw tmux a
+elif [ $# -eq 1 ]; then
+	if [[ $1 =~ ^[0-9]+$ ]] && [ 1 -le $1 ] && [ $1 -le 15 ]; then
+		ssh -t b04902102@linux"$1".csie.ntu.edu.tw tmux a
+	elif [ $1 = cl5 ]; then
+		ssh -t allenye0119@cl5.learner.csie.ntu.edu.tw tmux a
+	elif [ $1 = cl6 ]; then
+		ssh -t allenye0119@cl6.learner.csie.ntu.edu.tw tmux a
+	elif [ $1 = -e ]; then
+		for i in {1..13}
+		do
+			ssh b04902102@linux${i}.csie.ntu.edu.tw bash -c uptime | cut -d ' ' -f 14
+		done > ~/_total_mem_usage_list
+		MACHINE=`nl ~/_total_mem_usage_list | sort -k 2n | head -1 | awk '{print $1}'`
+		ssh b04902102@linux"$MACHINE".csie.ntu.edu.tw	
+	elif [ $1 = -p ]; then
+		echo "Machine      CPU  Free MEM"
+		for i in {1..13}
+		do
+			/bin/echo -n "linux$i	"
+			ssh b04902102@linux"$i".csie.ntu.edu.tw bash command
+		done
+	else
+		figlet JIZZ
+	fi
+elif [ $# -eq 3 ]; then
+	if [ $1 = -u ]; then
+		scp -r "$2" b04902102@linux9.csie.ntu.edu.tw"$3"
+	elif [ $1 = -d ] ;then
+		scp -r b04902102@linux9.csie.ntu.edu.tw"$2" "$3"
+	else
+		figlet JIZZ
+	fi
+else
+	figlet JIZZ
+fi
