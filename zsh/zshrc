@@ -103,4 +103,6 @@ function ntu() {
 
 	cd ~/Documents/NTU_"$SEASON"_"$YEAR"/"$1"
 }
-eval `dircolors ~/.dir_colors`
+if whence dircolors > /dev/null; then
+	eval `dircolors ~/.dir_colors`
+fi

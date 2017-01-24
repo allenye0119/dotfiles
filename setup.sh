@@ -12,7 +12,14 @@ ln -sfv ~/.dotfiles/git/gitignore_global ~/.gitignore_global
 
 # vim
 ln -sfv ~/.dotfiles/vim/vimrc ~/.vimrc
-ln -sfv ~/.dotfiles/vim/UltiSnips ~/.vim/UltiSnips
+
+if [ ! -d ~/.vim/UltiSnips ]; then
+	mkdir ~/.vim/UltiSnips
+fi
+
+for f in `ls ~/.dotfiles/vim/UltiSnips`; do
+	ln -sfv ~/.dotfiles/vim/UltiSnips/$f ~/.vim/UltiSnips/$f
+done
 
 # R
 ln -sfv ~/.dotfiles/R/Rprofile ~/.Rprofile
@@ -21,6 +28,7 @@ ln -sfv ~/.dotfiles/R/Rprofile ~/.Rprofile
 if [ ! -d ~/.ptpython ]; then
 	mkdir ~/.ptpython
 fi
+
 ln -sfv ~/.dotfiles/ptpython/config.py ~/.ptpython/config.py
 
 # dircolors
