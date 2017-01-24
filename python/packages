@@ -1,7 +1,6 @@
 ana==0.2
 angr==5.6.8.22
 angr-only-z3-custom==4.4.1.post4
-angr-utils==0.2.2
 appnope==0.1.0
 archinfo==5.6.8.22
 attrs==16.2.0
@@ -11,7 +10,6 @@ backports.shutil-get-terminal-size==1.0.0
 backports.ssl-match-hostname==3.5.0.1
 bcdoc==0.12.2
 beautifulsoup4==4.5.1
-bingraphvis==0.0.2
 bintrees==2.0.4
 boto==2.28.0
 botocore==0.73.0
@@ -48,7 +46,6 @@ gensim==0.13.2
 genson==0.2.0
 gmpy2==2.0.8
 GraphLab-Create==2.1
-GraphLab-Create-License==2.1
 graphviz==0.5.1
 grip==4.3.2
 h5py==2.6.0
@@ -73,7 +70,6 @@ jupyter-console==5.0.0
 jupyter-core==4.2.0
 Keras==1.1.0
 leveldb==0.194
-libnum==1.4
 lxml==3.6.4
 Mako==1.0.6
 Markdown==2.6.7
@@ -138,7 +134,6 @@ PySocks==1.6.5
 python-dateutil==1.5
 python-gflags==3.1.0
 pytz==2016.6.1
-pyvex==5.6.8.25
 PyYAML==3.12
 pyzmq==15.4.0
 qtconsole==4.2.1
@@ -166,7 +161,6 @@ spark-parser==1.4.0
 sseclient==0.0.12
 stevedore==1.17.1
 sympy==1.0
-TBB==0.1
 tensorflow==0.12.1
 termcolor==1.1.0
 terminado==0.6
