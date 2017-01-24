@@ -103,3 +103,4 @@ function ntu() {
 
 	cd ~/Documents/NTU_"$SEASON"_"$YEAR"/"$1"
 }
+eval `dircolors ~/.dir_colors`
