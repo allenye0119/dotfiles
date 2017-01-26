@@ -1,9 +1,6 @@
 # !/bin/sh
 
-if [ $# -eq 0 ]; then
-	echo '-p/--python	update all python packages via pip'
-	echo '-b/--brew	update all mac packages via homebrew'
-elif [ $# -eq 1 ]; then
+if [ $# -eq 1 ]; then
 	if [ $1 = '-a' -o $1 = '--apt' ]; then
 		sudo apt-get update && sudo apt-get upgrade
 	elif [ $1 = '-p' -o $1 = '--python' ]; then
