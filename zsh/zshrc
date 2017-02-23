@@ -1,10 +1,7 @@
-# Path to your oh-my-zsh installation.
+# Path to oh-my-zsh installation
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Theme
 ZSH_THEME="aye"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -27,10 +24,10 @@ ZSH_THEME="aye"
 DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -87,6 +84,7 @@ export EDITOR="vim"
 export TERM="screen-256color"
 
 export PATH=$PATH:~/bin:~/.local/bin:~/.local/lib
+export PATH=$PATH:/usr/local/go/bin
 export CUDA_HOME=/usr/local/cuda
 export PATH=$PATH:$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
@@ -96,9 +94,6 @@ export PATH=$PATH:~/anaconda2/bin
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-#source ~/bin/tmuxinator.zsh
-#eval $(thefuck --alias)
-
 function ntu() {
 	MONTH=`date +"%m"`
 	YEAR=`date +"%y"`
@@ -106,6 +101,7 @@ function ntu() {
 
 	if [[ 2 -le $MONTH && $MONTH -lt 8 ]]; then
 		SEASON="Spring"
+		YEAR=$((YEAR - 1))
 	else
 		SEASON="Fall"
 	fi
@@ -113,10 +109,16 @@ function ntu() {
 	cd ~/Documents/NTU_"$SEASON"_"$YEAR"/"$1"
 }
 
+if whence trash-put > /dev/null; then
+	alias tp="trash-put"
+fi
+
+alias zshconfig="vim ~/.zshrc"
+
+#eval $(thefuck --alias)
+
 if whence dircolors > /dev/null; then
 	eval `dircolors ~/.dir_colors`
 fi
 
-if whence trash-put > /dev/null; then
-	alias tp='trash-put'
-fi
+#source ~/bin/tmuxinator.zsh
