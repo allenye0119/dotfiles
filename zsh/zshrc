@@ -107,7 +107,6 @@ function ntu() {
 	cd ~/Documents/NTU_"$SEASON"_"$YEAR"/"$1"
 }
 
-
 if whence trash-put > /dev/null; then
 	alias tp="trash-put"
 fi
