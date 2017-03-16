@@ -29,7 +29,7 @@ ys_hg_prompt_info() {
 }
 
 # Virtualenv info
-virtualenv_info {
+virtualenv_info() {
 	[ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`')'
 }
 
