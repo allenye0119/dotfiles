@@ -1,10 +1,3 @@
-# Clean, simple, compatible and meaningful.
-# Tested on Linux, Unix and Windows under ANSI colors.
-# It is recommended to use with a dark background.
-# Colors: black, red, green, yellow, *blue, magenta, cyan, and white.
-#
-# Mar 2013 Yad Smood
-
 # VCS
 YS_VCS_PROMPT_PREFIX1=" %{$fg[white]%}on%{$reset_color%} "
 YS_VCS_PROMPT_PREFIX2=":%{$fg[cyan]%}"
@@ -35,17 +28,18 @@ ys_hg_prompt_info() {
 	fi
 }
 
+# Virtualenv info
+virtualenv_info() {
+	[ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`')'
+}
+
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
 # Prompt format:
 #
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
 # $ COMMAND
-#
-# For example:
-#
-# % ys @ ys-mbp in ~/.oh-my-zsh on git:master x [21:47:42] C:0
-# $
+
 PROMPT="
 %{$fg[blue]%}#%{$reset_color%} \
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \

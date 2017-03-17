@@ -35,6 +35,9 @@ noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map <C-n> :NERDTreeToggle<CR>
 
+" syntastic
+let g:syntastic_python_checkers = ['python']
+
 " devicons
 "set encoding=utf8
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:h11
