@@ -21,6 +21,7 @@ Plugin 'sirver/ultisnips'
 Plugin 'elzr/vim-json'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'danro/rename.vim'
 
 call vundle#end()
 filetype plugin indent on
