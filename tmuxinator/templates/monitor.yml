@@ -43,5 +43,5 @@ windows:
             - bmon
             - watch -n 1 "sudo netstat -tp"
             - watch -n 1 "grep sshd /var/log/auth.log | tail"
-            - watch -n 1 "wc -l /etc/fail2ban/ip.blacklist && cat /etc/fail2ban/ip.blacklist"
+            - watch -n 1 "wc -l /etc/fail2ban/ip.blacklist && geoipstat.sh"
             

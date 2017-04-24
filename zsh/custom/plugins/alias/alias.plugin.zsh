@@ -5,4 +5,6 @@ if whence trash-put > /dev/null; then
 	alias tp="trash-put"
 fi
 
+alias python="python3"
+alias pip="pip3"
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
