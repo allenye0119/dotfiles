@@ -21,6 +21,9 @@ Plugin 'sirver/ultisnips'
 Plugin 'elzr/vim-json'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'junegunn/vim-easy-align'
+Plugin 'danro/rename.vim'
+Plugin 'wikitopian/hardmode'
+Plugin 'pangloss/vim-javascript'
 
 call vundle#end()
 filetype plugin indent on
@@ -36,7 +39,17 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <C-n> :NERDTreeToggle<CR>
 
 " syntastic
-let g:syntastic_python_checkers = ['python']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers = ['flake8']
 
 " devicons
 "set encoding=utf8
@@ -143,8 +156,8 @@ nnoremap <leader>ev :vsplit ~/.vimrc<CR>
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
-nnoremap <leader>x :bw<CR>
-nnoremap <leader>e :e 
+nnoremap <leader>x :tabclose<CR>
+nnoremap <leader>e :tabedit 
 nnoremap <silent> <leader><CR> :nohl<CR>
 
 nnoremap <leader>pp :setlocal paste!<CR>
@@ -155,6 +168,22 @@ inoremap <c-h> <esc>:bp<CR>
 inoremap <c-l> <esc>:bn<CR>
 nnoremap <c-h> :bp<CR>
 nnoremap <c-l> :bn<CR>
+
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
+nnoremap <Left> gT
+nnoremap <Right> gt
+
+inoremap <Left> <esc>gT
+inoremap <Right> <esc>gt
 
 " autocommand
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
