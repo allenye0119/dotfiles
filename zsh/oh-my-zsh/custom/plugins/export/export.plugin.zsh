@@ -7,7 +7,7 @@ export TERM="screen-256color"
 export PATH=$PATH:~/bin:~/.local/bin:~/.local/lib
 
 # virtualenvwrapper
-export WORKON_HOME=~/.envs
+export WORKON_HOME=~/.virtualenvs
 
 # cuda
 export CUDA_HOME=/usr/local/cuda
