@@ -6,10 +6,6 @@ check_dir () {
 	fi
 }
 
-link_file () {
-	ln -sfv $1 $2
-}
-
 link_files () {
 	for f in `ls $1`; do
 		ln -sfv $1/$f $2/$f
@@ -17,11 +13,10 @@ link_files () {
 }
 
 # zsh
-link_file ~/.dotfiles/zsh/zshrc ~/.zshrc
-link_files ~/.dotfiles/zsh/custom/plugins ~/.oh-my-zsh/custom/plugins
+ln -sf ~/.dotfiles/zsh/zshrc ~/.zshrc
 
 # tmux
-link_file ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
 
 # tmuxinator
 check_dir ~/.bin
