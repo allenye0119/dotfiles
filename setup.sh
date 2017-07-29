@@ -18,6 +18,7 @@ link_files () {
 
 # zsh
 link_file ~/.dotfiles/zsh/zshrc ~/.zshrc
+link_files ~/.dotfiles/zsh/custom/plugins ~/.oh-my-zsh/custom/plugins
 
 # tmux
 link_file ~/.dotfiles/tmux/tmux.conf ~/.tmux.conf
@@ -49,9 +50,6 @@ link_file ~/.dotfiles/git/gitignore_global ~/.gitignore_global
 # R
 link_file ~/.dotfiles/R/Rprofile ~/.Rprofile
 
-# ptpython
-check_dir ~/.ptpython
-link_file ~/.dotfiles/ptpython/config.py ~/.ptpython/config.py
 
 # dircolors
 link_file ~/.dotfiles/dir_colors/dircolors.256dark ~/.dir_colors
