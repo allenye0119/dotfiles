@@ -7,6 +7,8 @@ export TERM="screen-256color"
 export PATH=$PATH:~/bin:~/.local/bin:~/.local/lib
 
 # virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export WORKON_HOME=~/.virtualenvs
 
 # cuda
