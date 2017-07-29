@@ -9,7 +9,8 @@ export PATH=$PATH:~/bin:~/.local/bin:~/.local/lib
 # virtualenvwrapper
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
 export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
-export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
+expor WORKON_HOME=~/.virtualenvs
 
 # cuda
 export CUDA_HOME=/usr/local/cuda
