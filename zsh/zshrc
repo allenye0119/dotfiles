@@ -5,7 +5,7 @@ ZSH_CUSTOM=~/.oh-my-zsh/custom
 
 DISABLE_AUTO_TITLE="true"
 
-plugins=(alias export eval function git zsh-syntax-highlighting)
+plugins=(alias export eval source git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
