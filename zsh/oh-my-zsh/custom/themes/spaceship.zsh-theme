@@ -12,7 +12,7 @@ NEWLINE='
 SPACESHIP_PROMPT_SYMBOL="${SPACESHIP_PROMPT_SYMBOL:-➔}"
 SPACESHIP_PROMPT_ADD_NEWLINE="${SPACESHIP_PROMPT_ADD_NEWLINE:-true}"
 SPACESHIP_PROMPT_SEPARATE_LINE="${SPACESHIP_PROMPT_SEPARATE_LINE:-true}"
-SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-0}"
+SPACESHIP_PROMPT_TRUNC="${SPACESHIP_PROMPT_TRUNC:-3}"
 
 # PREFIXES
 SPACESHIP_PREFIX_SHOW="${SPACEHIP_PREFIX_SHOW:-true}"
@@ -65,6 +65,7 @@ SPACESHIP_XCODE_SYMBOL="${SPACESHIP_XCODE_SYMBOL:-🛠}"
 
 # VENV
 SPACESHIP_VENV_SHOW="${SPACESHIP_VENV_SHOW:-true}"
+SPACESHIP_VENV_SYMBOL="${SPACESHIP_VENV_SYMBOL:-🐍}"
 
 # PYENV
 SPACESHIP_PYENV_SHOW="${SPACESHIP_PYENV_SHOW:-true}"
@@ -223,13 +224,14 @@ spaceship_venv_status() {
   [[ $SPACESHIP_VENV_SHOW == false ]] && return
 
   # Check if the current directory running via Virtualenv
-  [ -n "$VIRTUAL_ENV" ] && $(type deactivate >/dev/null 2>&1) || return
+  [[ -n "$VIRTUAL_ENV" || -n "$CONDA_DEFAULT_ENV" ]] && $(type deactivate >/dev/null 2>&1) || return
 
   # Do not show venv prefix if prefixes are disabled
   [[ $SPACESHIP_PREFIX_SHOW == true ]] && echo -n "%{$fg[white]%}${SPACESHIP_PREFIX_VENV}" || echo -n ' '
 
   echo -n "%{$fg_bold[magenta]%}"
-  echo -n "$(basename $VIRTUAL_ENV)"
+  [ -n "$VIRTUAL_ENV" ] && echo -n "${SPACESHIP_VENV_SYMBOL}$(basename $VIRTUAL_ENV)"
+  [ -n "$CONDA_DEFAULT_ENV" ] && echo -n "${SPACESHIP_VENV_SYMBOL}$CONDA_DEFAULT_ENV"
   echo -n "%{$reset_color%}"
 }
 

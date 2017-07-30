@@ -12,6 +12,9 @@ export VIRTUALENVWRAPPER_VIRTUALENV=/usr/bin/virtualenv
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--python=/usr/bin/python3'
 export WORKON_HOME=~/.virtualenvs
 
+# conda
+export PATH=$PATH:~/miniconda3/bin
+
 # cuda
 export CUDA_HOME=/usr/local/cuda
 export PATH=$PATH:$CUDA_HOME/bin
