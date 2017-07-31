@@ -1,8 +1,9 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export EDITOR="vim"
-export TERM="screen-256color"
+export SHELL=/bin/zsh
+export EDITOR=vim
+export TERM=screen-256color
 
 export PATH=$PATH:~/bin:~/.local/bin:~/.local/lib
 
