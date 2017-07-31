@@ -1,0 +1,3 @@
+layout_conda () {
+	source activate "$1"	
+}
