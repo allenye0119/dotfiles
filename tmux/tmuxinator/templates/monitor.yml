@@ -1,47 +1,24 @@
-# ~/.tmuxinator/default.yml
-
 name: <%= @settings["project"] %>
 root: <%= @settings["workspace"] %>
 
-# Optional tmux socket
-# socket_name: foo
-
-# Runs before everything. Use it to start daemons etc.
-# pre: sudo /etc/rc.d/mysqld start
-
-# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
-
-# Pass command line options to tmux. Useful for specifying a different tmux.conf.
-# tmux_options: -f ~/.tmux.mac.conf
-
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-# tmux_command: byobu
-
-# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: editor
-
-# Specitifes (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
-# startup_pane: 1
-
-# Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
-
-# Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t default
-
 windows:
-    - Resource:
-        layout: 811d,238x51,0,0{59x51,0,0,0,96x51,60,0,2,81x51,157,0,3}
+    - Control:
+        layout: 690a,211x55,0,0{105x55,0,0,8,105x55,106,0,9}
         panes:
             - 
+            -
+    - Resource: 
+        layout: 0481,211x55,0,0{130x55,0,0[130x32,0,0,1,130x22,0,33,9],80x55,131,0,5}
+        panes:
             - htop
-            - watch -n 1 "sensors && iostat && nvidia-smi"
-    - Network: 
-        layout: d156,238x51,0,0{81x51,0,0,1,124x51,82,0[124x33,82,0,5,124x17,82,34,8],31x51,207,0,6}
+            - watch nvidia-smi
+            - watch --color "grc sensors && grc iostat && grc df -h"
+    - Network&Log:
+        layout: 8eb6,211x55,0,0{80x55,0,0,2,130x55,81,0[130x27,81,0,6,130x27,81,28,5]}
         panes:
             - bmon
-            - watch -n 1 "sudo netstat -tp"
-            - watch -n 1 "grep sshd /var/log/auth.log | tail"
-            - watch -n 1 "wc -l /etc/fail2ban/ip.blacklist && geoipstat.sh"
-            
+            - tail -f /var/log/syslog | ccze
+            - tail -f /var/log/auth.log | ccze
+    - Fun:
+        panes:
+            - vtop -t wizard
