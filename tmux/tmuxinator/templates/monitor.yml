@@ -11,7 +11,7 @@ windows:
         layout: 0481,211x55,0,0{130x55,0,0[130x32,0,0,1,130x22,0,33,9],80x55,131,0,5}
         panes:
             - htop
-            - watch nvidia-smi
+            - nvidia-smi -l
             - watch --color "grc sensors && grc iostat && grc df -h"
     - Network&Log:
         layout: 8eb6,211x55,0,0{80x55,0,0,2,130x55,81,0[130x27,81,0,6,130x27,81,28,5]}
