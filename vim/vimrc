@@ -160,7 +160,7 @@ nnoremap <leader>ev :vsplit ~/.vimrc<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>x :tabclose<CR>
-nnoremap <leader>e :tabedit
+nnoremap <leader>e :tabedit<space>
 nnoremap <silent> <leader><CR> :nohl<CR>
 
 nnoremap <leader>pp :setlocal paste!<CR>
