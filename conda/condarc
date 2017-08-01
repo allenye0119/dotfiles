@@ -1,1 +1,5 @@
 changeps1: false
+create_default_packages:
+- pip
+- ipython
+
