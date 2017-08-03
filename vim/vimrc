@@ -175,6 +175,12 @@ nnoremap <Right> gt
 inoremap <Left> <esc>gT
 inoremap <Right> <esc>gt
 
+nnoremap <Leader><Left> :tabm<space>-1<CR>
+nnoremap <Leader><Right> :tabm<space>+1<CR>
+
+inoremap <Leader><Left> <esc>:tabm<space>-1<CR>i
+inoremap <Leader><Right> <esc>:tabm<space>+1<CR>i
+
 " autocommand
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 	\| exe "normal! g'\"" | endif
