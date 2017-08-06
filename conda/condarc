@@ -1,5 +1,9 @@
 changeps1: false
-create_default_packages:
-- pip
-- ipython
 
+create_default_packages:
+  - pip
+  - ipython
+
+channels:
+  - soumith
+  - defaults
