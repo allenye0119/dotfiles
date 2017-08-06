@@ -95,9 +95,9 @@ set colorcolumn=81
 set t_Co=256
 set background=dark
 colorscheme solarized
-hi Normal ctermbg=none
-"highlight OverLength ctermbg=red ctermfg=white
-"match OverLength /\%81v.\+/
+set cursorline
+set cursorcolumn
+highlight Normal ctermbg=none
 
 " Tab
 set tabstop=4
