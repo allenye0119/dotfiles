@@ -1,2 +1,1 @@
-# Allen Ye's Dotfiles
-
+# My Dotfiles
