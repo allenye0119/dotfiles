@@ -40,12 +40,13 @@ local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
 # $ COMMAND
 
+#%{$fg[blue]%}#%{$reset_color%} \
+#%(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
+#%{$fg[white]%}@ \
+#%{$fg[green]%}%m \
+#%{$fg[white]%}in \
+
 PROMPT="
-%{$fg[blue]%}#%{$reset_color%} \
-%(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
-%{$fg[white]%}@ \
-%{$fg[green]%}%m \
-%{$fg[white]%}in \
 %{$fg[yellow]%}%~%{$reset_color%}\
 ${hg_info}\
 ${git_info}\

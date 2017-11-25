@@ -457,7 +457,7 @@ spaceship_prompt() {
   spaceship_golang_version
   spaceship_venv_status
   spaceship_pyenv_status
-  spaceship_time
+  #spaceship_time
 
   # Should it write prompt in two lines or not?
   # Write a space before, if it's written in single line

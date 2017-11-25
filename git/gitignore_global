@@ -2,4 +2,4 @@
 *.swp
 *.swo
 .envrc
-__pycache__
+tags

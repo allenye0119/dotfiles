@@ -29,3 +29,6 @@ export PATH=$HOME/miniconda3/bin:$PATH
 export CUDA_HOME=/usr/local/cuda
 export PATH=$PATH:$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
+
+# clang (for YouCompleteMe)
+export PATH=clang+llvm-5.0.0-linux-x86_64-ubuntu16.04/bin:$PATH

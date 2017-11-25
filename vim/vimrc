@@ -1,58 +1,78 @@
-" Vundle
+""""""""""
+" Vundle "
+""""""""""
+
 set nocompatible
 filetype off
-
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'terryma/vim-multiple-cursors'
+
+" appereance
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'xuyuanp/nerdtree-git-plugin'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
-Plugin 'Townk/vim-autoclose'
-Plugin 'scrooloose/nerdcommenter'
+
+" snippets and autocomplete
+"Plugin 'ervandew/supertab'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'sirver/ultisnips'
-Plugin 'elzr/vim-json'
+Plugin 'honza/vim-snippets'
+
+" moving
+Plugin 'bkad/camelcasemotion'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'danro/rename.vim'
-Plugin 'wikitopian/hardmode'
-Plugin 'pangloss/vim-javascript'
+
+" file-related
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" git integration
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'xuyuanp/nerdtree-git-plugin'
+
+" code overview
+Plugin 'majutsushi/tagbar'
+
+" easy commenting
+Plugin 'scrooloose/nerdcommenter'
+
+" dealing with paired-characters 
+Plugin 'raimondi/delimitmate'
+Plugin 'tpope/vim-surround'
+
+" syntax checking
+Plugin 'scrooloose/syntastic'
+
+" language packs
+Plugin 'sheerun/vim-polyglot'
+
+" show color in css
+Plugin 'ap/vim-css-color'
+
+
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 filetype plugin indent on
 
+
+
+""""""""""
+" Leader "
+""""""""""
+
 let mapleader=','
 
-" nerdcommenter
-inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
-noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 
-" nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-map <C-n> :NERDTreeToggle<CR>
 
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_sh_checkers = ['shellcheck']
+"""""""""""""""""""
+" Plugin Settings "
+"""""""""""""""""""
 
 " devicons
 set encoding=utf8
@@ -64,104 +84,219 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 set laststatus=2
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_alt_sep=''
 let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#hunks#enabled = 0    
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
+let g:airline#extensions#hunks#enabled = 1
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+
+" tmuxline
+let g:tmuxline_preset = {
+    \ 'a': '#S',
+    \ 'win': ['#I', '#W#F'],
+    \ 'cwin': ['#I', '#W#F'],
+    \ 'x': [
+        \ "C #(uptime | cut -d ' ' -f 13 | tr -d ',')%",
+        \ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
+        \ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
+    \ 'y': '%H:%M',
+    \ 'z': '%a, %b %d %Y',
+    \ 'options': {'status-justify': 'left'}}
+let g:tmuxline_separators = {
+    \ 'left': '',
+    \ 'left_alt': '|',
+    \ 'right': '',
+    \ 'right_alt': '|',
+    \ 'space': ' '}
+
+" devicon
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+" supertab
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+" youcompleteme
+set pumheight=20
+set splitbelow
+set completeopt-=preview
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_python_binary_path = 'python'
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
 
+" camelcasemoving
+map <silent> w <Plug>CamelCaseMotion_w
+map <silent> b <Plug>CamelCaseMotion_b
+map <silent> e <Plug>CamelCaseMotion_e
+map <silent> ge <Plug>CamelCaseMotion_ge
+sunmap w
+sunmap b
+sunmap e
+sunmap ge
+
 " easymotion
-let g:EasyMotion_do_mapping = 1
-let g:EasyMotion_startofline = 0
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+map <Leader><Leader>s <Plug>(easymotion-f)
 map <Leader><Leader>h <Plug>(easymotion-linebackward)
 map <Leader><Leader>l <Plug>(easymotion-lineforward)
+map <Leader><Leader>j <Plug>(easymotion-j)
+map <Leader><Leader>k <Plug>(easymotion-k)
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
 
-" General
+"ctrlp
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtBS()':              ['<bs>',],
+    \ 'ToggleType(1)':        ['<c-l>'],
+    \ 'ToggleType(-1)':       ['<c-h>'],
+    \ 'PrtHistory(-1)':       [],
+    \ 'MarkToOpen()':         ['<c-n>'],
+    \ 'PrtCurLeft()':         ['<left>'],
+    \ 'PrtCurRight()':        ['<right>']
+    \ }
+let g:ctrlp_open_multiple_files = 'ij'
+let g:ctrlp_open_new_file = 'r'
+
+" nerdtree
+autocmd bufenter *
+    \ if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree())
+    \ | q | endif
+nnoremap <silent> <c-_> :NERDTreeToggle<CR>
+inoremap <silent> <c-_> <esc>:NERDTreeToggle<CR>i
+let NERDTreeAutoDeleteBuffer=1
+
+" vim-nerd-tree-syntax-highlight
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+
+" nerdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "+",
+    \ "Staged"    : "!",
+    \ "Untracked" : "?",
+    \ "Renamed"   : "→",
+    \ "Unmerged"  : "=",
+    \ "Deleted"   : "x",
+    \ "Dirty"     : "+",
+    \ "Clean"     : "",
+    \ 'Ignored'   : "~",
+    \ "Unknown"   : ""}
+
+" nerdcommenter
+noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
+inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
+
+" tagbar
+nnoremap <c-\> :TagbarToggle<CR>
+inoremap <c-\> <esc>:TagbarToggle<CR>i
+let g:tagbar_iconchars = ['▸', '▾']
+let g:tagbar_map_togglefold = 't'
+let g:tagbar_map_nexttag = '<tab>'
+let g:tagbar_map_prevtag = '<s-tab>'
+
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_mode_map = { 'passive_filetypes': ['python']  }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+
+
+
+""""""""""""""""""""
+" General Settings "
+""""""""""""""""""""
+
+" some stuff
 syntax on
 set wildmenu
+set wildignore+=*.swp,*.swo,*swn,*.zip,*.png,*.jpg,*jpeg,*pdf,.git,__pycache__
 set foldenable
 set mouse=a
-set colorcolumn=81
+set timeoutlen=500
+set backspace=indent,eol,start
+set scrolloff=8
+set iskeyword-=_,A-Z
 
-" Theme
+" color
 set t_Co=256
 set background=dark
 colorscheme solarized
+
+" line indicators
+set colorcolumn=81
 set cursorline
 set cursorcolumn
 highlight Normal ctermbg=none
 
-" Tab
+" tab
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set smartindent
-set ai
 
-" Search
+" indentation
+set autoindent
+set smartindent
+
+" search
 set showmatch
 set incsearch
 set hlsearch
+set ignorecase
+set smartcase
 
-" Line Number
+" line number
 set number
 set nuw=6
 set relativenumber
 
-" Backspace
-set backspace=indent,eol,start
-
-set timeoutlen=500
-
-" Buffer
+" buffer
 set hidden
 
-" Mappings
 
-inoremap kj <esc>
-inoremap jk <esc>
 
-nnoremap H ^
-nnoremap L $
 
-nnoremap _ ddp
-nnoremap - ddkP
+""""""""""""
+" Mappings "
+""""""""""""
 
-inoremap <c-d> <esc>ddi
-inoremap <c-u> <esc>ui
+" source/edit vimrc
+nnoremap <silent> <leader>sv :source ~/.vimrc<CR>
+nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 
-nnoremap <c-c> viw~
-inoremap <c-c> <esc>lviw~i
-
-nnoremap <leader>sv :source ~/.vimrc<CR>
-nnoremap <leader>ev :vsplit ~/.vimrc<CR>
-
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>x :tabclose<CR>
-nnoremap <leader>e :tabedit<space>
-nnoremap <silent> <leader><CR> :nohl<CR>
-
-nnoremap <leader>pp :setlocal paste!<CR>
-
-nnoremap pp Vyp
-
-inoremap <c-h> <esc>:bp<CR>
-inoremap <c-l> <esc>:bn<CR>
-nnoremap <c-h> :bp<CR>
-nnoremap <c-l> :bn<CR>
-
+" disable up/down/left/right
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
 nnoremap <Left> <NOP>
@@ -172,18 +307,74 @@ inoremap <Down> <NOP>
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
-nnoremap <Left> gT
-nnoremap <Right> gt
+" open/save/close buffer
+nnorema <silent> <leader>e :e<space>
+nnorema <silent> <leader>w :w<CR>
+nnorema <silent> <leader>x :bd<CR>
+nnorema <silent> <leader>q :qa<CR>
 
-inoremap <Left> <esc>gT
-inoremap <Right> <esc>gt
+" navigate through buffer
+nnoremap <silent> <Left> :bp<CR>
+nnoremap <silent> <Right> :bn<CR>
+inoremap <silent> <Left> <esc>:bp<CR>
+inoremap <silent> <Right> <esc>:bn<CR>
 
-nnoremap <Leader><Left> :tabm<space>-1<CR>
-nnoremap <Leader><Right> :tabm<space>+1<CR>
+" escape
+inoremap kj <esc>
+inoremap jk <esc>
 
-inoremap <Leader><Left> <esc>:tabm<space>-1<CR>i
-inoremap <Leader><Right> <esc>:tabm<space>+1<CR>i
+" move between vertical split windows
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
-" autocommand
+" move to start/end of line
+nnoremap H ^
+nnoremap L $
+
+" fast moving
+nnoremap <c-f> <c-f>zz
+nnoremap <c-b> <c-b>zz
+inoremap <c-f> <esc><c-f>zzi
+inoremap <c-b> <esc><c-b>zzi
+nnoremap <c-j> 16j
+nnoremap <c-k> 16k
+inoremap <c-j> <esc>16ji
+inoremap <c-k> <esc>16ki
+
+" move line up/down one line
+nnoremap - ddkP
+nnoremap _ ddp
+
+" select previously selected text
+nnoremap <leader>ss gv
+
+" select pasted text
+nnoremap <leader>sp `[v`]
+
+" select innerword
+nnoremap <space> viw
+inoremap <c-space> <esc>lviw
+
+" copy and paste current line
+nnoremap pp Vyp
+
+" delete current line in insert mode
+inoremap <c-d> <esc>ddi
+
+" undo in insert mode
+inoremap <c-u> <esc>ui
+
+" toggle upper/lower case of a word
+nnoremap <c-c> viw~
+inoremap <c-c> <esc>lviw~i
+
+" remove highlight
+nnoremap <silent> <leader><CR> :nohl<CR>
+
+" toggle paste mode
+nnoremap <silent> <leader>pp :setlocal paste!<CR>
+
+" jump to the last position when opening a file
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-	\| exe "normal! g'\"" | endif
+    \| exe "normal! g'\"" | endif
+
