@@ -15,7 +15,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 
 " snippets and autocomplete
-"Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -30,7 +29,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " git integration
-Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 
@@ -130,13 +128,12 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
-" supertab
-let g:SuperTabClosePreviewOnPopupClose = 1
-
 " youcompleteme
 set pumheight=20
 set splitbelow
 set completeopt-=preview
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_filepath_completion_use_working_dir = 1
@@ -144,8 +141,8 @@ let g:ycm_python_binary_path = 'python'
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<c-b>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " camelcasemoving
 map <silent> w <Plug>CamelCaseMotion_w
@@ -212,6 +209,9 @@ let g:NERDTreeIndicatorMapCustom = {
 " nerdcommenter
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
+
+" delimitmate
+imap <C-e> <Plug>delimitMateS-Tab
 
 " tagbar
 nnoremap <c-\> :TagbarToggle<CR>
