@@ -29,6 +29,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " git integration
+Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 
@@ -38,7 +39,7 @@ Plugin 'majutsushi/tagbar'
 " easy commenting
 Plugin 'scrooloose/nerdcommenter'
 
-" dealing with paired-characters 
+" dealing with paired-characters
 Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-surround'
 
@@ -82,17 +83,22 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 set laststatus=2
 let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_alt_sep=''
-let g:airline#extensions#tmuxline#enabled = 1
+let g:airline_skip_empty_sections = 1
+
+let g:airline_left_sep=' '
+let g:airline_right_sep=' '
+let g:airline_left_alt_sep='|'
+let g:airline_right_alt_sep='|'
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
+
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -105,20 +111,20 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 
 " tmuxline
 let g:tmuxline_preset = {
-    \ 'a': '#S',
+    \ 'a': ' #S',
     \ 'win': ['#I', '#W#F'],
     \ 'cwin': ['#I', '#W#F'],
     \ 'x': [
         \ "C #(uptime | cut -d ' ' -f 13 | tr -d ',')%",
         \ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
         \ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
-    \ 'y': '%H:%M',
-    \ 'z': '%a, %b %d %Y',
+    \ 'y': ' %H:%M',
+    \ 'z': ' %a, %b %d %Y',
     \ 'options': {'status-justify': 'left'}}
 let g:tmuxline_separators = {
-    \ 'left': '',
+    \ 'left': ' ',
+    \ 'right': ' ',
     \ 'left_alt': '|',
-    \ 'right': '',
     \ 'right_alt': '|',
     \ 'space': ' '}
 
@@ -377,4 +383,8 @@ nnoremap <silent> <leader>pp :setlocal paste!<CR>
 " jump to the last position when opening a file
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
+
+
+
+
 
