@@ -44,7 +44,7 @@ Plugin 'raimondi/delimitmate'
 Plugin 'tpope/vim-surround'
 
 " syntax checking
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 
 " language packs
 Plugin 'sheerun/vim-polyglot'
@@ -52,7 +52,7 @@ Plugin 'sheerun/vim-polyglot'
 " show color in css
 Plugin 'ap/vim-css-color'
 
-
+" must be at the last
 Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
@@ -97,7 +97,8 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
+
+let g:airline#extensions#ale#enabled = 1
 
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -138,15 +139,16 @@ let g:DevIconsEnableFoldersOpenClose = 1
 set pumheight=20
 set splitbelow
 set completeopt-=preview
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_select_completion = ['<tab>']
+let g:ycm_key_list_previous_completion = ['<s-tab>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_python_binary_path = 'python'
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<c-e>"
+let g:UltiSnipsListSnippets = "<c-l>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
@@ -217,7 +219,7 @@ noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
 
 " delimitmate
-imap <C-e> <Plug>delimitMateS-Tab
+imap <c-l> <Plug>delimitMateS-Tab
 
 " tagbar
 nnoremap <c-\> :TagbarToggle<CR>
@@ -227,15 +229,25 @@ let g:tagbar_map_togglefold = 't'
 let g:tagbar_map_nexttag = '<tab>'
 let g:tagbar_map_prevtag = '<s-tab>'
 
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_mode_map = { 'passive_filetypes': ['python']  }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+" ale
+let g:ale_sign_error = '◈'
+let g:ale_sign_warning = '◈'
+highlight ALEWarning ctermbg=166
+let g:ale_statusline_format = ['E%d', 'W%d', '']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" dragvisuals
+"source $HOME/.dotfiles/vim/dragvisuals.vim
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+let g:DVB_TrimWS = 1
 
 
 
@@ -329,6 +341,9 @@ inoremap <silent> <Right> <esc>:bn<CR>
 inoremap kj <esc>
 inoremap jk <esc>
 
+" :->;
+nnoremap ; :
+
 " move between vertical split windows
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
@@ -340,12 +355,6 @@ nnoremap L $
 " fast moving
 nnoremap <c-f> <c-f>zz
 nnoremap <c-b> <c-b>zz
-inoremap <c-f> <esc><c-f>zzi
-inoremap <c-b> <esc><c-b>zzi
-nnoremap <c-j> 16j
-nnoremap <c-k> 16k
-inoremap <c-j> <esc>16ji
-inoremap <c-k> <esc>16ki
 
 " move line up/down one line
 nnoremap - ddkP
@@ -383,8 +392,3 @@ nnoremap <silent> <leader>pp :setlocal paste!<CR>
 " jump to the last position when opening a file
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
-
-
-
-
-
