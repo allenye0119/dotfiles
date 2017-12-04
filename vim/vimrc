@@ -87,8 +87,10 @@ let g:airline_skip_empty_sections = 1
 
 let g:airline_left_sep=' '
 let g:airline_right_sep=' '
-let g:airline_left_alt_sep='|'
-let g:airline_right_alt_sep='|'
+let g:airline_left_alt_sep=' '
+let g:airline_right_alt_sep=' '
+
+let g:airline#extensions#whitespace#checks = []
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -98,6 +100,9 @@ let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
 
+let g:airline#extensions#ale#error_symbol = 'E:'
+let g:airline#extensions#ale#warning_symbol = 'W:'
+let g:airline#extensions#ale#show_line_number = 0
 let g:airline#extensions#ale#enabled = 1
 
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -116,7 +121,7 @@ let g:tmuxline_preset = {
     \ 'win': ['#I', '#W#F'],
     \ 'cwin': ['#I', '#W#F'],
     \ 'x': [
-        \ "C #(uptime | cut -d ' ' -f 13 | tr -d ',')%",
+        \ "C #(uptime | cut -d ' ' -f 14 | tr -d ',')%",
         \ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
         \ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
     \ 'y': ' %H:%M',
@@ -138,17 +143,17 @@ let g:DevIconsEnableFoldersOpenClose = 1
 " youcompleteme
 set pumheight=20
 set splitbelow
-set completeopt-=preview
+let g:ycm_python_binary_path = 'python'
 let g:ycm_key_list_select_completion = ['<tab>']
 let g:ycm_key_list_previous_completion = ['<s-tab>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_filepath_completion_use_working_dir = 1
-let g:ycm_python_binary_path = 'python'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " ultisnips
 let g:UltiSnipsExpandTrigger = "<c-e>"
-let g:UltiSnipsListSnippets = "<c-l>"
+let g:UltiSnipsListSnippets = "<nop>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
@@ -230,10 +235,12 @@ let g:tagbar_map_nexttag = '<tab>'
 let g:tagbar_map_prevtag = '<s-tab>'
 
 " ale
+let g:ale_linters = {
+\   'python': ['flake8']
+\}
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_error = '◈'
 let g:ale_sign_warning = '◈'
-highlight ALEWarning ctermbg=166
-let g:ale_statusline_format = ['E%d', 'W%d', '']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -326,7 +333,7 @@ inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
 " open/save/close buffer
-nnorema <silent> <leader>e :e<space>
+nnorema <leader>e :e<space>
 nnorema <silent> <leader>w :w<CR>
 nnorema <silent> <leader>x :bd<CR>
 nnorema <silent> <leader>q :qa<CR>
