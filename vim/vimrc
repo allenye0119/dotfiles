@@ -41,7 +41,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 
 " dealing with paired-characters
-Plugin 'raimondi/delimitmate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 
 " syntax checking
@@ -235,9 +235,6 @@ let g:NERDTreeIndicatorMapCustom = {
 " nerdcommenter
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
-
-" delimitmate
-imap <c-l> <Plug>delimitMateS-Tab
 
 " tagbar
 nnoremap <c-\> :TagbarToggle<CR>
