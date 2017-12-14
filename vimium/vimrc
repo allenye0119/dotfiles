@@ -1,0 +1,74 @@
+" Unmap all commands
+unmapAll
+
+
+"""""""""""""""""""""""
+" Navigating the page "
+"""""""""""""""""""""""
+
+" Reload the page
+map r reload
+
+" Focus the first text input on the page
+map i focusInput
+
+" Open a link in the current tab
+map f LinkHints.activateMode
+
+" Open multiple links in a new tab
+map F LinkHints.activateModeWithQueue
+
+" Copy a link URL to the clipboard
+map yf LinkHints.activateModeToCopyLinkUrl
+
+" Download link url
+map D LinkHints.activateModeToDownloadLink
+
+" Scroll down/up
+map j scrollDown
+map k scrollUp
+
+" Scroll half page down/up
+map d scrollPageDown
+map u scrollPageUp
+
+" Scroll to top/bottom
+map gg scrollToTop
+map G scrollToBottom
+
+
+""""""""""""""""""""""""""
+" Navigating the history "
+""""""""""""""""""""""""""
+
+" Go back/forward in history
+map H goBack
+map L goBack
+
+
+"""""""""""""""""""""
+" Manipulating tabs "
+"""""""""""""""""""""
+
+" Create new tab
+map t createTab
+
+" Got to the tab left/right
+map J previousTab
+map K nextTab
+
+" Closing/resoring tab
+map x removeTab
+map X restoreTab
+
+" Move tab to the left/right
+map << moveTabLeft
+map >> moveTabRight
+
+
+"""""""""""""""""
+" Miscellaneous "
+"""""""""""""""""
+
+" Show help
+map ? showHelp
