@@ -91,10 +91,14 @@ let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
-let g:airline_left_sep=' '
-let g:airline_right_sep=' '
-let g:airline_left_alt_sep=' '
-let g:airline_right_alt_sep=' '
+"let g:airline_left_sep=' '
+"let g:airline_right_sep=' '
+"let g:airline_left_alt_sep=' '
+"let g:airline_right_alt_sep=' '
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_left_alt_sep=''
+let g:airline_right_alt_sep=''
 
 let g:airline#extensions#whitespace#checks = []
 
@@ -133,9 +137,15 @@ let g:tmuxline_preset = {
     \ 'y': ' %H:%M',
     \ 'z': ' %a, %b %d %Y',
     \ 'options': {'status-justify': 'left'}}
-let g:tmuxline_separators = {
-    \ 'left': ' ',
-    \ 'right': ' ',
+" let g:tmuxline_separators = {
+    "\ 'left': ' ',
+    "\ 'right': ' ',
+    "\ 'left_alt': '|',
+    "\ 'right_alt': '|',
+    "\ 'space': ' '}
+ let g:tmuxline_separators = {
+    \ 'left': '',
+    \ 'right': '',
     \ 'left_alt': '|',
     \ 'right_alt': '|',
     \ 'space': ' '}
@@ -231,6 +241,14 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "",
     \ 'Ignored'   : "~",
     \ "Unknown"   : ""}
+    
+" vim-gutter
+highlight GitGutterAdd ctermbg=8 ctermfg=2
+highlight GitGutterChange ctermbg=8 ctermfg=3
+highlight GitGutterDelete ctermbg=8 ctermfg=1
+highlight GitGutterChangeDelete ctermbg=8 ctermfg=2
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
 
 " nerdcommenter
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
@@ -322,6 +340,7 @@ set smartcase
 set number
 set nuw=6
 set relativenumber
+highlight LineNr ctermbg=8
 
 " buffer
 set hidden

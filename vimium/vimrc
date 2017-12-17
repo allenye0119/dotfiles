@@ -43,7 +43,7 @@ map G scrollToBottom
 
 " Go back/forward in history
 map H goBack
-map L goBack
+map L goForward
 
 
 """""""""""""""""""""
