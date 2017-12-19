@@ -108,7 +108,7 @@ case "$1" in
         feh --bg-fill $wallpaper
         style=${2:-resized}
         lock_wallpaper=$(echo $wallpaper | sed -e "s/\-resized\.png$/\-${style}\.png/g")
-        lock "$lock_wallpaper"
+        lock "$lock_wallpaper" 2>/dev/null
         postlock
 		;;
 	-u | --update)
