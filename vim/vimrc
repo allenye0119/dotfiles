@@ -1,4 +1,4 @@
-" {{{ Plugins
+" Plugins {{{
 """"""""""
 " Vundle "
 """"""""""
@@ -68,10 +68,9 @@ Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 filetype plugin indent on
-" }}}
 
 
-" {{{ Leader
+" Leader {{{
 """"""""""
 " Leader "
 """"""""""
@@ -81,7 +80,7 @@ let mapleader=','
 
 
 
-" {{{ Plugin Settings
+" Plugin Settings {{{
 """""""""""""""""""
 " Plugin Settings "
 """""""""""""""""""
@@ -176,10 +175,9 @@ let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = "<c-e>"
-let g:UltiSnipsListSnippets = "<nop>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger = '<leader>e'
+let g:UltiSnipsJumpForwardTrigger = '<c-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 " camelcasemoving
 map <silent> w <Plug>CamelCaseMotion_w
@@ -210,10 +208,6 @@ nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-inoremap <silent> <c-h> <esc>:TmuxNavigateLeft<cr>
-inoremap <silent> <c-j> <esc>:TmuxNavigateDown<cr>
-inoremap <silent> <c-k> <esc>:TmuxNavigateUp<cr>
-inoremap <silent> <c-l> <esc>:TmuxNavigateRight<cr>
 
 "ctrlp
 let g:ctrlp_prompt_mappings = {
@@ -266,6 +260,11 @@ let g:gitgutter_sign_removed_first_line = '-'
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
 
+" vim-auto-pairs
+" remember to manually disable nmap in the source file, to prevent collision
+" with vim-tmux-navigator
+let g:AutoPairsShortcutJump = '<c-l>'
+
 " tagbar
 nnoremap <c-\> :TagbarToggle<CR>
 inoremap <c-\> <esc>:TagbarToggle<CR>i
@@ -302,7 +301,7 @@ let g:DVB_TrimWS = 1
 
 
 
-" {{{ General Settings
+" General Settings {{{
 """"""""""""""""""""
 " General Settings "
 """"""""""""""""""""
@@ -351,7 +350,6 @@ set smartcase
 
 " fold
 set foldenable
-set foldcolumn=2
 set foldmethod=marker
 set foldlevelstart=99
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
@@ -368,11 +366,14 @@ set hidden
 " jump to the last position when opening a file
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
+
+" quit when there's no buffer left
+autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
 " }}}
 
 
 
-" {{{ Mappings
+" Mappings {{{
 """"""""""""
 " Mappings "
 """"""""""""
@@ -381,22 +382,21 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 nnoremap <leader>sv :source ~/.vimrc<CR>
 nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
 
-" disable up/down/left/right
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
+" disable left/right/up/down
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
 
 " open/save/close buffer
 nnoremap <leader>e :e<space>
 nnoremap <silent> <leader>w :w<CR>
 nnoremap <silent> <leader>x :bd<CR>
-nnoremap <silent> <leader>q :qa<CR>
+nnoremap <silent> <leader>q :wa \| qa<CR>
 
 " split window
 nnoremap <leader>v :hsplit<space>
