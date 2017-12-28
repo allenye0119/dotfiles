@@ -3,6 +3,8 @@ alias srczsh="source ~/.zshrc"
 alias cfgtmux="vim ~/.tmux.conf"
 alias srctmux="tmux source ~/.tmux.conf"
 
+alias cat="colorize"
+
 if whence trash-put > /dev/null; then
 	alias tp="trash-put"
 fi

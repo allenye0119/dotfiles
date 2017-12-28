@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " appereance
+Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
@@ -54,6 +55,10 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'lervag/vimtex'
 Plugin 'ap/vim-css-color'
 
+" distraction-free writing
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+
 " must be at the last
 Plugin 'ryanoasis/vim-devicons'
 
@@ -62,9 +67,6 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 
 " save vim session automatically
 Plugin 'tpope/vim-obsession'
-
-" vim color schemes
-Plugin 'flazz/vim-colorschemes'
 
 call vundle#end()
 filetype plugin indent on
@@ -327,8 +329,8 @@ colorscheme solarized
 " line indicators
 set colorcolumn=81
 set cursorline
-set cursorcolumn
 highlight Normal ctermbg=none
+highlight CursorLine cterm=underline ctermbg=none
 
 " tab
 set expandtab
