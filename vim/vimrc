@@ -77,7 +77,7 @@ filetype plugin indent on
 " Leader "
 """"""""""
 
-let mapleader=','
+let mapleader = ','
 " }}}
 
 
@@ -95,19 +95,19 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 " airline
 set laststatus=2
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg = 'dark'
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 
-"let g:airline_left_sep=' '
-"let g:airline_right_sep=' '
-"let g:airline_left_alt_sep=' '
-"let g:airline_right_alt_sep=' '
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_left_alt_sep=''
-let g:airline_right_alt_sep=''
+"let g:airline_left_sep = ' '
+"let g:airline_right_sep = ' '
+"let g:airline_left_alt_sep = ' '
+"let g:airline_right_alt_sep = ' '
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
 
 let g:airline#extensions#whitespace#checks = []
 
@@ -124,15 +124,15 @@ let g:airline#extensions#ale#warning_symbol = 'W:'
 let g:airline#extensions#ale#show_line_number = 0
 let g:airline#extensions#ale#enabled = 1
 
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <Leader>1 <Plug>AirlineSelectTab1
+nmap <Leader>2 <Plug>AirlineSelectTab2
+nmap <Leader>3 <Plug>AirlineSelectTab3
+nmap <Leader>4 <Plug>AirlineSelectTab4
+nmap <Leader>5 <Plug>AirlineSelectTab5
+nmap <Leader>6 <Plug>AirlineSelectTab6
+nmap <Leader>7 <Plug>AirlineSelectTab7
+nmap <Leader>8 <Plug>AirlineSelectTab8
+nmap <Leader>9 <Plug>AirlineSelectTab9
 
 " tmuxline
 let g:tmuxline_preset = {
@@ -207,24 +207,24 @@ map N <Plug>(easymotion-prev)
 
 " vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
-inoremap <silent> <c-h> <esc>:TmuxNavigateLeft<cr>
-inoremap <silent> <c-j> <esc>:TmuxNavigateDown<cr>
-inoremap <silent> <c-k> <esc>:TmuxNavigateUp<cr>
-inoremap <silent> <c-l> <esc>:TmuxNavigateRight<cr>
+nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-j> :TmuxNavigateDown<CR>
+nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
+nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
+inoremap <silent> <C-h> <ESC>:TmuxNavigateLeft<CR>
+inoremap <silent> <C-j> <ESC>:TmuxNavigateDown<CR>
+inoremap <silent> <C-k> <ESC>:TmuxNavigateUp<CR>
+inoremap <silent> <C-l> <ESC>:TmuxNavigateRight<CR>
 
 "ctrlp
 let g:ctrlp_prompt_mappings = {
-    \ 'PrtBS()':              ['<bs>',],
-    \ 'ToggleType(1)':        ['<c-l>'],
-    \ 'ToggleType(-1)':       ['<c-h>'],
+    \ 'PrtBS()':              ['<bs>'],
+    \ 'ToggleType(1)':        ['<C-l>'],
+    \ 'ToggleType(-1)':       ['<C-h>'],
     \ 'PrtHistory(-1)':       [],
-    \ 'MarkToOpen()':         ['<c-n>'],
-    \ 'PrtCurLeft()':         ['<left>'],
-    \ 'PrtCurRight()':        ['<right>']
+    \ 'MarkToOpen()':         ['<C-n>'],
+    \ 'PrtCurLeft()':         ['<Left>'],
+    \ 'PrtCurRight()':        ['<Right>']
     \ }
 let g:ctrlp_open_multiple_files = 'ij'
 let g:ctrlp_open_new_file = 'r'
@@ -244,16 +244,16 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "+",
-    \ "Staged"    : "!",
-    \ "Untracked" : "?",
-    \ "Renamed"   : "→",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "x",
-    \ "Dirty"     : "+",
-    \ "Clean"     : "",
-    \ 'Ignored'   : "~",
-    \ "Unknown"   : ""}
+    \ "Modified"  : '+',
+    \ "Staged"    : '!',
+    \ "Untracked" : '?',
+    \ "Renamed"   : '→',
+    \ "Unmerged"  : '=',
+    \ "Deleted"   : 'x',
+    \ "Dirty"     : '+',
+    \ "Clean"     : '',
+    \ 'Ignored'   : '~',
+    \ "Unknown"   : ''}
     
 " vim-gutter
 highlight GitGutterAdd ctermbg=8 ctermfg=2
@@ -264,16 +264,16 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 
 " nerdcommenter
-noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
-inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
+noremap <silent> <Leader>c :call NERDComment(0, "toggle")<CR>
+inoremap <silent> <Leader>c <ESC>:call NERDComment(0, "toggle")<CR>i
 
 " tagbar
-nnoremap <c-\> :TagbarToggle<CR>
-inoremap <c-\> <esc>:TagbarToggle<CR>i
+nnoremap <C-\> :TagbarToggle<CR>
+inoremap <C-\> <esc>:TagbarToggle<CR>i
 let g:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_map_togglefold = 't'
-let g:tagbar_map_nexttag = '<tab>'
-let g:tagbar_map_prevtag = '<s-tab>'
+let g:tagbar_map_nexttag = '<TAB>'
+let g:tagbar_map_prevtag = '<S-TAB>'
 
 " ale
 let g:ale_linters = {
@@ -293,12 +293,12 @@ let g:polyglot_disabled = ['latex']
 
 " dragvisuals
 "source $HOME/.dotfiles/vim/dragvisuals.vim
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
-let g:DVB_TrimWS = 1
+"vmap  <expr>  <LEFT>   DVB_Drag('left')
+"vmap  <expr>  <RIGHT>  DVB_Drag('right')
+"vmap  <expr>  <DOWN>   DVB_Drag('down')
+"vmap  <expr>  <UP>     DVB_Drag('up')
+"vmap  <expr>  D        DVB_Duplicate()
+"let g:DVB_TrimWS = 1
 " }}}
 
 
@@ -380,39 +380,39 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 """"""""""""
 
 " source/edit vimrc
-nnoremap <leader>sv :source ~/.vimrc<CR>
-nnoremap <silent> <leader>ev :e ~/.vimrc<CR>
+nnoremap <Leader>sv :source ~/.vimrc<CR>
+nnoremap <silent> <Leader>ev :e ~/.vimrc<CR>
 
 " disable left/right/up/down
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
 inoremap <c-n> <Right> " for moving out of close bracket
 
 " open/save/close buffer
-nnoremap <leader>e :e<space>
-nnoremap <silent> <leader>w :w<CR>
-nnoremap <silent> <leader>x :bd<CR>
-nnoremap <silent> <leader>q :wa \| qa<CR>
+nnoremap <Leader>e :e<SPACE>
+nnoremap <silent> <Leader>w :w<CR>
+nnoremap <silent> <Leader>x :bd<CR>
+nnoremap <silent> <Leader>q :wa \| qa<CR>
 
 " split window
-nnoremap <leader>v :hsplit<space>
-nnoremap <leader>h :vsplit<space>
+nnoremap <Leader>v :hsplit<SPACE>
+nnoremap <Leader>h :vsplit<SPACE>
 
 " navigate through buffer
 nnoremap <silent> <Left> :bp<CR>
 nnoremap <silent> <Right> :bn<CR>
-inoremap <silent> <Left> <esc>:bp<CR>
-inoremap <silent> <Right> <esc>:bn<CR>
+inoremap <silent> <Left> <ESC>:bp<CR>
+inoremap <silent> <Right> <ESC>:bn<CR>
 
 " escape
-inoremap kj <esc>
-inoremap jk <esc>
+inoremap kj <ESC>
+inoremap jk <ESC>
 
 " :->;
 nnoremap ; :
@@ -422,39 +422,39 @@ nnoremap H ^
 nnoremap L $
 
 " fast moving
-nnoremap <c-f> <c-f>zz
-nnoremap <c-b> <c-b>zz
+nnoremap <C-f> <C-f>zz
+nnoremap <C-b> <C-b>zz
 
 " move line up/down one line
 nnoremap - ddkP
 nnoremap _ ddp
 
 " select previously selected text
-nnoremap <leader>ss gv
+nnoremap <Leader>ss gv
 
 " select pasted text
-nnoremap <leader>sp `[v`]
+nnoremap <Leader>sp `[v`]
 
 " select innerword
-nnoremap <space> viw
+nnoremap <SPACE> viw
 nnoremap <CR> ciw
 
 " copy and paste current line
 nnoremap pp Vyp
 
 " delete current line in insert mode
-inoremap <c-d> <esc>ddi
+inoremap <C-d> <ESC>ddi
 
 " undo in insert mode
-inoremap <c-u> <esc>ui
+inoremap <C-u> <ESC>ui
 
 " toggle upper/lower case of a word
-nnoremap <c-c> viw~
-inoremap <c-c> <esc>lviw~i
+nnoremap <C-c> viw~
+inoremap <C-c> <ESC>lviw~i
 
 " remove highlight
-nnoremap <silent> <leader><CR> :nohl<CR>
+nnoremap <silent> <Leader><CR> :nohl<CR>
 
 " toggle paste mode
-nnoremap <silent> <leader>pp :setlocal paste!<CR>
+nnoremap <silent> <Leader>pp :setlocal paste!<CR>
 " }}}
