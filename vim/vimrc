@@ -44,8 +44,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 
 " dealing with paired-characters
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
+Plugin 'cohama/lexima.vim'
 
 " syntax checking
 Plugin 'w0rp/ale'
@@ -181,6 +181,7 @@ let g:UltiSnipsExpandTrigger = '<leader>e'
 let g:UltiSnipsJumpForwardTrigger = '<c-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
+
 " camelcasemoving
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
@@ -210,6 +211,10 @@ nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+inoremap <silent> <c-h> <esc>:TmuxNavigateLeft<cr>
+inoremap <silent> <c-j> <esc>:TmuxNavigateDown<cr>
+inoremap <silent> <c-k> <esc>:TmuxNavigateUp<cr>
+inoremap <silent> <c-l> <esc>:TmuxNavigateRight<cr>
 
 "ctrlp
 let g:ctrlp_prompt_mappings = {
@@ -261,11 +266,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 " nerdcommenter
 noremap <silent> <leader>c :call NERDComment(0,"toggle")<CR>
 inoremap <silent> <leader>c <esc>:call NERDComment(0,"toggle")<CR>i
-
-" vim-auto-pairs
-" remember to manually disable nmap in the source file, to prevent collision
-" with vim-tmux-navigator
-let g:AutoPairsShortcutJump = '<c-l>'
 
 " tagbar
 nnoremap <c-\> :TagbarToggle<CR>
@@ -330,7 +330,6 @@ colorscheme solarized
 set colorcolumn=81
 set cursorline
 highlight Normal ctermbg=none
-highlight CursorLine cterm=underline ctermbg=none
 
 " tab
 set expandtab
@@ -393,6 +392,7 @@ inoremap <Left> <nop>
 inoremap <Right> <nop>
 inoremap <Up> <nop>
 inoremap <Down> <nop>
+inoremap <c-n> <Right> " for moving out of close bracket
 
 " open/save/close buffer
 nnoremap <leader>e :e<space>
