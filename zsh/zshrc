@@ -5,6 +5,6 @@ ZSH_CUSTOM=~/.oh-my-zsh/custom
 
 DISABLE_AUTO_TITLE="true"
 
-plugins=(alias export function eval git tmux zsh-syntax-highlighting colored-man-pages colorize extract vundle zsh-nvm)
+plugins=(alias export function eval git tmux colored-man-pages colorize extract zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh

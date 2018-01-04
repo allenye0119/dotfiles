@@ -1,75 +1,69 @@
 " Plugins {{{
-""""""""""
-" Vundle "
-""""""""""
+""""""""""""
+" vim-plug "
+""""""""""""
 
-set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.vim/bundle')
 " appereance
-Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/tmuxline.vim'
+Plug 'altercation/vim-colors-solarized'
 
 " snippets and autocomplete
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'sirver/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe'
+Plug 'sirver/ultisnips'
+Plug 'honza/vim-snippets'
 
 " moving around
-Plugin 'bkad/camelcasemotion'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'bkad/camelcasemotion'
+Plug 'easymotion/vim-easymotion'
+Plug 'christoomey/vim-tmux-navigator'
 
 " file-related
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " git integration
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'xuyuanp/nerdtree-git-plugin'
 
-" code overview
-Plugin 'majutsushi/tagbar'
+" tags
+Plug 'majutsushi/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
 
 " easy commenting
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " dealing with paired-characters
-Plugin 'tpope/vim-surround'
-Plugin 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
+Plug 'cohama/lexima.vim'
 
 " syntax checking
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
 " language packs
-Plugin 'sheerun/vim-polyglot'
-Plugin 'lervag/vimtex'
-Plugin 'ap/vim-css-color'
+Plug 'sheerun/vim-polyglot'
+Plug 'lervag/vimtex'
+Plug 'ap/vim-css-color'
 
 " distraction-free writing
-"Plugin 'junegunn/goyo.vim'
-"Plugin 'junegunn/limelight.vim'
+"Plug 'junegunn/goyo.vim'
+"Plug 'junegunn/limelight.vim'
 
 " must be at the last
-Plugin 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " vim tmux focus events
-Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " save vim session automatically
-Plugin 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 
 " Leader {{{
@@ -309,7 +303,7 @@ let g:polyglot_disabled = ['latex']
 """"""""""""""""""""
 
 " some stuff
-syntax on
+set nocompatible
 set wildmenu
 set wildignore+=*.swp,*.swo,*swn,*.zip,*.png,*.jpg,*jpeg,*pdf,.git,__pycache__
 set foldenable
@@ -392,7 +386,7 @@ inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
-inoremap <c-n> <Right> " for moving out of close bracket
+inoremap <C-n> <Right> " for moving out of close bracket
 
 " open/save/close buffer
 nnoremap <Leader>e :e<SPACE>
