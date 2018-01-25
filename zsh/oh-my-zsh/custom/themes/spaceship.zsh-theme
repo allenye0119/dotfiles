@@ -275,7 +275,7 @@ spaceship_nvm_status() {
   [[ $SPACESHIP_NVM_SHOW == false ]] && return
 
   # Show NVM status only for JS-specific folders
-  [[ -f package.json || -d node_modules || -n *.js(#qN) ]] || return
+  [[ -f .nvmrc || -f package.json || -d node_modules || -n *.js(#qN) ]] || return
 
   command -v nvm > /dev/null 2>&1 || return
 

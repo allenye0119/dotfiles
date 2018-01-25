@@ -17,13 +17,16 @@ Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
 " moving around
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'bkad/camelcasemotion'
 Plug 'easymotion/vim-easymotion'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 
 " file-related
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " git integration
@@ -33,10 +36,13 @@ Plug 'xuyuanp/nerdtree-git-plugin'
 
 " tags
 Plug 'majutsushi/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'ternjs/tern_for_vim'
 
 " easy commenting
 Plug 'scrooloose/nerdcommenter'
+
+" close buffer without closing window
+Plug 'qpkorr/vim-bufkill'
 
 " dealing with paired-characters
 Plug 'tpope/vim-surround'
@@ -49,6 +55,7 @@ Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex'
 Plug 'ap/vim-css-color'
+Plug 'jparise/vim-graphql'
 
 " distraction-free writing
 "Plug 'junegunn/goyo.vim'
@@ -189,15 +196,27 @@ sunmap ge
 " easymotion
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
-map <Leader>s <Plug>(easymotion-f)
-map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map / <Plug>(easymotion-sn)
+
+map <Leader>s <Plug>(easymotion-s2)
+map <Leader>l <Plug>(easymotion-lineanywhere)
+map <Leader>j <Plug>(easymotion-bd-jk)
+
+map  / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
+
+" fuzzy search
+function! s:config_easyfuzzymotion(...) abort
+    return extend(copy({
+    \   'converters': [incsearch#config#fuzzyword#converter()],
+    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+    \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+    \   'is_expr': 0,
+    \   'is_stay': 1
+    \ }), get(a:, 1, {}))
+endfunction
+noremap <silent><expr> <Leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " vim-tmux-navigator
 let g:tmux_navigator_no_mappings = 1
@@ -260,6 +279,11 @@ let g:gitgutter_sign_removed_first_line = '-'
 " nerdcommenter
 noremap <silent> <Leader>c :call NERDComment(0, "toggle")<CR>
 inoremap <silent> <Leader>c <ESC>:call NERDComment(0, "toggle")<CR>i
+
+" yankstack
+"let g:yankstack_map_keys = 0
+"nnoremap <Leader>p <Plug>yankstack_substitute_older_paste
+"nnoremap <Leader>P <Plug>yankstack_substitute_newer_paste
 
 " tagbar
 nnoremap <C-\> :TagbarToggle<CR>
@@ -386,12 +410,15 @@ inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
-inoremap <C-n> <Right> " for moving out of close bracket
+" for moving out of close bracket
+inoremap <C-n> <Right>
+
 
 " open/save/close buffer
 nnoremap <Leader>e :e<SPACE>
 nnoremap <silent> <Leader>w :w<CR>
-nnoremap <silent> <Leader>x :bd<CR>
+nnoremap <silent> <Leader>x :BW<CR>
+nnoremap <silent> <Leader>X :bd<CR>
 nnoremap <silent> <Leader>q :wa \| qa<CR>
 
 " split window
@@ -422,6 +449,9 @@ nnoremap <C-b> <C-b>zz
 " move line up/down one line
 nnoremap - ddkP
 nnoremap _ ddp
+
+" search selected text
+vnoremap // y/<C-R>"<CR>
 
 " select previously selected text
 nnoremap <Leader>ss gv
