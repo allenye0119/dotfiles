@@ -8,24 +8,16 @@ prelock() {
 
 lock() {
 	#$1 image path
-	letterEnteredColor=d23c3dff
-	letterRemovedColor=d23c3dff
-	passwordCorrect=00000000
-	passwordIncorrect=d23c3dff
-	background=00000000
-	foreground=
 	i3lock \
 		-n -i "$1" \
-		--timepos="x-90:h-ch+30" --datepos="tx+0:ty+25" --clock \
+		--timepos="ix-100:iy" --datepos="tx:ty+20" --clock \
         --timecolor=ffffff80 --datecolor=ffffff80 \
-        --textcolor=ffffff80 \
         --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 \
         --keyhlcolor=00000080 --separatorcolor=22222260 \
         --insidevercolor=00000000 --ringvercolor=00000000 \
         --insidewrongcolor=00000000 --ringwrongcolor=00000000 \
         --radius=25 --ring-width=4 --veriftext="" --wrongtext="" \
         --indpos="x+220:h-70"
-		
 }
 
 postlock() {

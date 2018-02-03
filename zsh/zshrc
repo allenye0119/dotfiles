@@ -1,10 +1,43 @@
+## oh-my-zsh
+
 export ZSH=$HOME/.oh-my-zsh
+ZSH_CUSTOM=$ZSH/custom
 
-ZSH_THEME="spaceship"
-ZSH_CUSTOM=~/.oh-my-zsh/custom
+# theme
+ZSH_THEME='spaceship'
+SPACESHIP_PROMPT_ORDER=(user host dir git conda node golang haskell line_sep char)
+SPACESHIP_RPROMPT_ORDER=(jobs exec_time)
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW='true'
 
-DISABLE_AUTO_TITLE="true"
+SPACESHIP_CHAR_COLOR_SUCCESS=''
 
-plugins=(alias export function eval git tmux colored-man-pages colorize extract zsh-nvm)
+SPACESHIP_USER_SHOW='always'
+SPACESHIP_USER_PREFIX='# '
+SPACESHIP_USER_COLOR='blue'
+
+SPACESHIP_HOST_SHOW='always'
+SPACESHIP_HOST_PREFIX='@ '
+SPACESHIP_HOST_COLOR='cyan'
+
+SPACESHIP_DIR_PREFIX='∈ '
+SPACESHIP_DIR_COLOR='yellow'
+
+SPACESHIP_GIT_STATUS_DELETED='x'
+SPACESHIP_CONDA_SYMBOL=' '
+SPACESHIP_NODE_SYMBOL=' '
+SPACESHIP_GOLANG_SYMBOL=' '
+SPACESHIP_HASKELL_SYMBOL=' '
+SPACESHIP_JOBS_SYMBOL='◈'
+
+SPACESHIP_EXEC_TIME_PREFIX=''
+SPACESHIP_EXEC_TIME_ELAPSED=5
+
+# plugins
+plugins=(aye git tmux colored-man-pages extract zsh-nvm)
 
 source $ZSH/oh-my-zsh.sh
+
+
+## general
+
+DISABLE_AUTO_TITLE="true"

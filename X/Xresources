@@ -45,7 +45,7 @@ URxvt*color14:                 S_base1
 URxvt*color15:                 S_base3
 
 ! font
-URxvt.font: xft:SauceCodePro Nerd Font:size=11
+URxvt.font: xft:SauceCodePro Nerd Font Mono:size=11,xft:DejaVuSansMono Nerd Font Mono:size=11,xtf:Noto Sans Mono:size=11
 
 ! disable scrollbar
 urxvt.scrollBar: false
@@ -59,10 +59,6 @@ URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 
 ! extensions
 URxvt.perl-ext-common: default, matcher
-
-! open link by left click
-URxvt.url-launcher: /usr/bin/xdg-open
-URxvt.matcher.button: 1
 
 ! disable mystery insert mode
 URxvt.iso14755: false

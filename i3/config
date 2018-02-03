@@ -74,19 +74,24 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+assign [class="URxvt"] 2
+assign [class="Google-chrome"] 3
+assign [class="Franz"] 4
+assign [class="spotify"] 5
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym plus resize grow width 10 px or 10 ppt
-        bindsym minus resize shrink width 10 px or 10 ppt
-        bindsym Shift+plus resize grow height 10 px or 10 ppt
-        bindsym Shift+minus resize shrink height 10 px or 10 ppt
+        bindsym plus resize grow width 5 px or 5 ppt
+        bindsym minus resize shrink width 5 px or 5 ppt
+        bindsym Shift+plus resize grow height 5 px or 5 ppt
+        bindsym Shift+minus resize shrink height 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -151,9 +156,9 @@ mode "$mode_gaps_outer" {
 }
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec amixer -M sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -M sset Master 5%-
+bindsym XF86AudioMute exec amixer -M sset Master toggle
 
 # partial screenshot
 bindsym --release Shift+Print exec scrot -s ~/Screenshots/%Y-%m-%d_%H:%M:%S.png 
@@ -176,22 +181,11 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 hide_edge_borders both
 
-# bar
-bar {
-    position top
-    status_command i3status
-	colors {
-		background $bg-color
-	    separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
-
 # lock
 bindsym $mod+Shift+x exec $HOME/.config/i3/scripts/lock -l dimblur
+
+# suspend
+bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/lock -l dimblur & $HOME/.config/i3/scripts/suspend
 
 # start rofi
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 460 -opacity "85" -bw 0 -bg "#000000" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
@@ -199,8 +193,14 @@ bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 460 -opaci
 # start a terminal
 bindsym $mod+Return exec urxvt
 
-# lock
-exec $HOME/.config/i3/scripts/lock -w
+# start ibus daemon
+exec ibus-daemon
 
-# use Xresources
-exec xrdb -merge $HOME/.Xresources
+# lock
+exec $HOME/.config/i3/scripts/lock -l dimblur
+
+exec polybar example
+exec urxvt
+exec franz
+exec google-chrome-stable
+exec spotify

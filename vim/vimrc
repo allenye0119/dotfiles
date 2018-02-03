@@ -5,13 +5,14 @@
 
 call plug#begin('~/.vim/bundle')
 " appereance
-Plug 'flazz/vim-colorschemes'
+"Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'altercation/vim-colors-solarized'
 
 " snippets and autocomplete
+Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
@@ -25,7 +26,7 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 
 " file-related
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
@@ -136,17 +137,17 @@ nmap <Leader>8 <Plug>AirlineSelectTab8
 nmap <Leader>9 <Plug>AirlineSelectTab9
 
 " tmuxline
-let g:tmuxline_preset = {
-    \ 'a': ' #S',
-    \ 'win': ['#I', '#W#F'],
-    \ 'cwin': ['#I', '#W#F'],
-    \ 'x': [
-        \ "C #(uptime | cut -d ' ' -f 14 | tr -d ',')%",
-        \ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
-        \ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
-    \ 'y': ' %H:%M',
-    \ 'z': ' %a, %b %d %Y',
-    \ 'options': {'status-justify': 'left'}}
+"let g:tmuxline_preset = {
+    "\ 'a': ' #S',
+    "\ 'win': ['#I', '#W#F'],
+    "\ 'cwin': ['#I', '#W#F'],
+    "\ 'x': [
+        "\ "C #(uptime | cut -d ' ' -f 14 | tr -d ',')%",
+        "\ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
+        "\ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
+    "\ 'y': ' %H:%M',
+    "\ 'z': ' %a, %b %d %Y',
+    "\ 'options': {'status-justify': 'left'}}
 " let g:tmuxline_separators = {
     "\ 'left': ' ',
     "\ 'right': ' ',
@@ -170,18 +171,18 @@ let g:DevIconsEnableFoldersOpenClose = 1
 set pumheight=20
 set splitbelow
 let g:ycm_python_binary_path = 'python'
-let g:ycm_key_list_select_completion = ['<tab>']
-let g:ycm_key_list_previous_completion = ['<s-tab>']
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_filepath_completion_use_working_dir = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " ultisnips
-let g:UltiSnipsExpandTrigger = '<leader>e'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
-
+let g:UltiSnipsExpandTrigger = '<TAB>'
+let g:UltiSnipsJumpForwardTrigger = '<TAB>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-TAB>'
 
 " camelcasemoving
 map <silent> w <Plug>CamelCaseMotion_w
@@ -201,7 +202,7 @@ map <Leader>s <Plug>(easymotion-s2)
 map <Leader>l <Plug>(easymotion-lineanywhere)
 map <Leader>j <Plug>(easymotion-bd-jk)
 
-map  / <Plug>(easymotion-sn)
+map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 map n <Plug>(easymotion-next)
 map N <Plug>(easymotion-prev)
@@ -230,17 +231,17 @@ inoremap <silent> <C-k> <ESC>:TmuxNavigateUp<CR>
 inoremap <silent> <C-l> <ESC>:TmuxNavigateRight<CR>
 
 "ctrlp
-let g:ctrlp_prompt_mappings = {
-    \ 'PrtBS()':              ['<bs>'],
-    \ 'ToggleType(1)':        ['<C-l>'],
-    \ 'ToggleType(-1)':       ['<C-h>'],
-    \ 'PrtHistory(-1)':       [],
-    \ 'MarkToOpen()':         ['<C-n>'],
-    \ 'PrtCurLeft()':         ['<Left>'],
-    \ 'PrtCurRight()':        ['<Right>']
-    \ }
-let g:ctrlp_open_multiple_files = 'ij'
-let g:ctrlp_open_new_file = 'r'
+"let g:ctrlp_prompt_mappings = {
+    "\ 'PrtBS()':              ['<bs>'],
+    "\ 'ToggleType(1)':        ['<C-l>'],
+    "\ 'ToggleType(-1)':       ['<C-h>'],
+    "\ 'PrtHistory(-1)':       [],
+    "\ 'MarkToOpen()':         ['<C-n>'],
+    "\ 'PrtCurLeft()':         ['<Left>'],
+    "\ 'PrtCurRight()':        ['<Right>']
+    "\ }
+"let g:ctrlp_open_multiple_files = 'ij'
+"let g:ctrlp_open_new_file = 'r'
 
 " nerdtree
 autocmd bufenter *
@@ -280,11 +281,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 noremap <silent> <Leader>c :call NERDComment(0, "toggle")<CR>
 inoremap <silent> <Leader>c <ESC>:call NERDComment(0, "toggle")<CR>i
 
-" yankstack
-"let g:yankstack_map_keys = 0
-"nnoremap <Leader>p <Plug>yankstack_substitute_older_paste
-"nnoremap <Leader>P <Plug>yankstack_substitute_newer_paste
-
 " tagbar
 nnoremap <C-\> :TagbarToggle<CR>
 inoremap <C-\> <esc>:TagbarToggle<CR>i
@@ -295,7 +291,8 @@ let g:tagbar_map_prevtag = '<S-TAB>'
 
 " ale
 let g:ale_linters = {
-\   'python': ['flake8']
+\   'python': ['flake8'],
+\   'sh': ['shellcheck']
 \}
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_error = '◈ '
@@ -303,8 +300,10 @@ let g:ale_sign_warning = '◈ '
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nmap <silent> <C-n> <Plug>(ale_next_wrap)
-nmap <silent> <C-m> <Plug>(ale_previous_wrap)
+nnoremap <silent> <Down> <Plug>(ale_next_wrap)
+nnoremap <silent> <Up> <Plug>(ale_previous_wrap)
+inoremap <silent> <Down> <Plug>(ale_next_wrap)
+inoremap <silent> <Up> <Plug>(ale_previous_wrap)
 
 " vim-polyglot
 let g:polyglot_disabled = ['latex']
