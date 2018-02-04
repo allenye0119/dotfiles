@@ -1,0 +1,23 @@
+## Arch thing
+
+emulate sh -c 'source /etc/profile'
+
+
+## Set path
+
+# conda
+export PATH=$HOME/miniconda3/bin:$PATH
+
+# yarn
+export PATH=$HOME/.yarn/bin:$PATH
+
+# cuda
+export CUDA_HOME=/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
+export PATH=$PATH:$CUDA_HOME/bin
+
+
+## Startx
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    exec startx
+fi

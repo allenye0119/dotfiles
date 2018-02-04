@@ -1,5 +1,0 @@
-# CRAN mirror
-options("repos" = c(CRAN = "http://cran.rstudio.com/"))
-
-# Set console width
-options("width" = 170)                                                                                                                                                  

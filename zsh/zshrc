@@ -35,9 +35,54 @@ SPACESHIP_EXEC_TIME_ELAPSED=5
 # plugins
 plugins=(aye git tmux colored-man-pages extract zsh-nvm)
 
+# general
+DISABLE_AUTO_TITLE="true"
+HYPHEN_INSENSITIVE="true"
+
 source $ZSH/oh-my-zsh.sh
 
 
-## general
+## General
 
-DISABLE_AUTO_TITLE="true"
+# environment variables
+export TERM=screen-256color
+export SHELL=/bin/zsh
+export EDITOR=vim
+
+# eval
+if whence dircolors > /dev/null; then
+	eval "$(dircolors ~/.dircolors)"
+fi
+
+if whence direnv > /dev/null; then
+	eval "$(direnv hook zsh)"
+fi
+
+# alias
+alias cfgzsh="vim ~/.zshrc"
+alias srczsh="source ~/.zshrc"
+alias cfgtmux="vim ~/.tmux.conf"
+alias srctmux="tmux source ~/.tmux.conf"
+
+if whence trash-put > /dev/null; then
+	alias tp="trash-put"
+fi
+
+# function
+# Use pip to install packages inside conda environments.
+#cpip() {
+	#ERROR_MSG="Not in a conda environment."
+	#ERROR_MSG="$ERROR_MSG\nUse \`source activate ENV\`"
+	#ERROR_MSG="$ERROR_MSG to enter a conda environment."
+
+	#[ -z "$CONDA_DEFAULT_ENV" ] && echo "$ERROR_MSG" && return 1
+
+	#ERROR_MSG='Pip not installed in current conda environment.'
+	#ERROR_MSG="$ERROR_MSG\nUse \`conda install pip\`"
+	#ERROR_MSG="$ERROR_MSG to install pip in current conda environment."
+
+	#[ -e "$CONDA_PREFIX/bin/pip" ] || (echo "$ERROR_MSG" && return 2)
+
+	#PIP="$CONDA_PREFIX/bin/pip"
+	#"$PIP" "$@"
+#}
