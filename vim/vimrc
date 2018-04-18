@@ -13,7 +13,7 @@ Plug 'altercation/vim-colors-solarized'
 
 " snippets and autocomplete
 Plug 'SirVer/ultisnips'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -337,6 +337,7 @@ set scrolloff=8
 set iskeyword-=_,A-Z
 set splitright
 set splitbelow
+set completeopt-=preview
 
 " color
 set t_Co=256
@@ -410,7 +411,7 @@ inoremap <Right> <NOP>
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 " for moving out of close bracket
-inoremap <C-n> <Right>
+inoremap <C-r> <Right>
 
 
 " open/save/close buffer
@@ -448,6 +449,9 @@ nnoremap <C-b> <C-b>zz
 " move line up/down one line
 nnoremap - ddkP
 nnoremap _ ddp
+
+" add empty line below
+inoremap <C-o> <CR><ESC>ki
 
 " search selected text
 vnoremap // y/<C-R>"<CR>

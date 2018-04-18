@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+cache_folder="$HOME/.cache/Wallpapers"
+
+convert_image() {
+    folder="$1"
+    y_res="$2"
+
+    if [ ! -d "$folder" ]; then
+        orig="$folder"
+        filename=$(basename $(echo $orig | tr ' ' '-'))
+        echo Processing $filename ...
+        filename=${filename%.*}
+
+        resized="$cache_folder/$filename-resized.png"
+        dim="$cache_folder/$filename-dim.png"
+        blur="$cache_folder/$filename-blur.png"
+        dimblur="$cache_folder/$filename-dimblur.png"
+
+        # resize image
+        convert "$orig" -resize "$y_res""^" -gravity center -extent "$y_res" "$resized"
+        # dim
+        convert "$resized" -fill black -colorize 40% "$dim"
+        # blur
+        convert "$resized" -blur 0x9 "$blur"
+        # dimblur
+        convert "$dim" -blur 0x9 "$dimblur"
+    else
+        for f in $folder/*; do
+            convert_image "$f" "$y_res"
+        done
+    fi
+}
+
+update() {
+    folder="$1"
+
+    # find resolution so images can be resized to match your screen resolution
+    y_res=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+
+    if [ ! -d $cache_folder ]; then
+        echo "Creating '$cache_folder' directory to cache processed images."
+        mkdir -p "$cache_folder"
+    fi
+
+    echo
+    echo "Generating alternate images based on images you specified,"
+    echo "please wait this might take few seconds..."
+
+    echo
+    convert_image "$folder" "$y_res"
+
+    echo
+    echo "All required changes have been applied."
+}
+
+case "$1" in
+	-w | --wall)
+        wallpapers=($(ls $cache_folder | grep "\-resized\.png$"))
+        wallpaper=$cache_folder/${wallpapers[$RANDOM % ${#wallpapers[@]}]}
+        feh --bg-fill $wallpaper
+		;;
+	-u | --update)
+        update "$2"
+        ;;
+esac

@@ -6,7 +6,7 @@ ZSH_CUSTOM=$ZSH/custom
 # theme
 ZSH_THEME='spaceship'
 SPACESHIP_PROMPT_ORDER=(user host dir git conda node golang haskell line_sep char)
-SPACESHIP_RPROMPT_ORDER=(jobs exec_time)
+SPACESHIP_RPROMPT_ORDER=(jobs)
 SPACESHIP_PROMPT_FIRST_PREFIX_SHOW='true'
 
 SPACESHIP_CHAR_COLOR_SUCCESS=''
@@ -29,11 +29,8 @@ SPACESHIP_GOLANG_SYMBOL=' '
 SPACESHIP_HASKELL_SYMBOL=' '
 SPACESHIP_JOBS_SYMBOL='◈'
 
-SPACESHIP_EXEC_TIME_PREFIX=''
-SPACESHIP_EXEC_TIME_ELAPSED=5
-
 # plugins
-plugins=(aye git tmux colored-man-pages extract zsh-nvm)
+plugins=(git tmux solarized-man extract zsh-nvm)
 
 # general
 DISABLE_AUTO_TITLE="true"

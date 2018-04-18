@@ -13,16 +13,16 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+Shift+h focus left
+bindsym $mod+Shift+j focus down
+bindsym $mod+Shift+k focus up
+bindsym $mod+Shift+l focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+b split h
@@ -51,6 +51,8 @@ bindsym $mod+e layout toggle split
 #bindsym $mod+d focus child
 
 # switch to workspace
+bindsym $mod+h workspace prev_on_output
+bindsym $mod+l workspace next_on_output
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -74,10 +76,11 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
-assign [class="URxvt"] 2
-assign [class="Google-chrome"] 3
-assign [class="Franz"] 4
-assign [class="spotify"] 5
+assign [class="URxvt" title="ranger"] → 1
+assign [class="URxvt"] → 2
+assign [class="Google-chrome"] → 3
+assign [class="Franz"] → 4
+for_window [class="Spotify"] move to workspace 5
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -116,8 +119,8 @@ client.focused_inactive #000000 #000000 #000000 #000000 #000000
 client.unfocused        #000000 #000000 #000000 #000000 #000000
 
 # Set inner/outer gaps
-gaps inner 20
-gaps outer 0
+gaps inner 10
+gaps outer 10
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -155,16 +158,15 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
 }
 
+# Screenshot
+bindsym Print exec scrot "$HOME/Screenshots/`date +%Y-%m-%d_%T`.png"
+bindsym --release $mod+Print exec scrot -u "$HOME/Screenshots/`date +%Y-%m-%d_%T`.png"
+bindsym --release $mod+Shift+Print exec scrot -s "$HOME/Screenshots/`date +%Y-%m-%d_%T`.png"
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec amixer -M sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -M sset Master 5%-
 bindsym XF86AudioMute exec amixer -M sset Master toggle
-
-# partial screenshot
-bindsym --release Shift+Print exec scrot -s ~/Screenshots/%Y-%m-%d_%H:%M:%S.png 
-
-# start a screenshot
-bindsym Print exec scrot ~/Screenshots/%Y-%m-%d_%H:%M:%S.png 
 
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
@@ -185,7 +187,7 @@ hide_edge_borders both
 bindsym $mod+Shift+x exec $HOME/.config/i3/scripts/lock -l dimblur
 
 # suspend
-bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/lock -l dimblur & $HOME/.config/i3/scripts/suspend
+bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/lock -l dimblur & systemctl suspend
 
 # start rofi
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 460 -opacity "85" -bw 0 -bg "#000000" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"
@@ -199,8 +201,10 @@ exec ibus-daemon
 # lock
 exec $HOME/.config/i3/scripts/lock -l dimblur
 
-exec polybar example
-exec urxvt
+#exec polybar example
+exec urxvt -e ranger
+exec urxvt -e zsh -c 'tmux new -s Main || tmux a -t Main'
 exec franz
 exec google-chrome-stable
 exec spotify
+exec --no-startup-id i3-msg 'workspace 2;'

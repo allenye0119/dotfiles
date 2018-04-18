@@ -7,5 +7,5 @@ create_default_packages:
 
 channels:
   - defaults
-  - soumith
   - conda-forge
+  - pytorch
