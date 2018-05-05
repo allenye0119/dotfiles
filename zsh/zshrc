@@ -66,6 +66,14 @@ if whence trash-put > /dev/null; then
 fi
 
 # function
+batl() {
+    if whence bat > /dev/null; then
+        bat $1 | less
+    else
+        echo "bat is not installed"
+    fi
+}
+
 # Use pip to install packages inside conda environments.
 #cpip() {
 	#ERROR_MSG="Not in a conda environment."

@@ -119,8 +119,8 @@ client.focused_inactive #000000 #000000 #000000 #000000 #000000
 client.unfocused        #000000 #000000 #000000 #000000 #000000
 
 # Set inner/outer gaps
-gaps inner 10
-gaps outer 10
+gaps inner 0
+gaps outer 0
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -187,7 +187,7 @@ hide_edge_borders both
 bindsym $mod+Shift+x exec $HOME/.config/i3/scripts/lock -l dimblur
 
 # suspend
-bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/lock -l dimblur & systemctl suspend
+bindsym $mod+Shift+s exec $HOME/.config/i3/scripts/suspend
 
 # start rofi
 bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 460 -opacity "85" -bw 0 -bg "#000000" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd"

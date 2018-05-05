@@ -1,9 +1,3 @@
 #!/usr/bin/env bash
 
-TIME=0
-if [[ `date +%s` -gt `date +%s -d 'today 08:00'` ]]; then
-    TIME=`date +%s -d 'tomorrow 08:00'`
-else
-    TIME=`date +%s -d 'today 08:00'`
-fi
-sudo rtcwake -m mem -l -t "$TIME"
+[[ $(nvidia-smi --query-compute-apps=pid --format=csv,noheader | wc -l) -eq 0 ]] && $HOME/.config/i3/scripts/lock -l dimblur && systemctl suspend
