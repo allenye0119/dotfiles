@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-[[ $(nvidia-smi --query-compute-apps=pid --format=csv,noheader | wc -l) -eq 0 ]] && $HOME/.config/i3/scripts/lock -l dimblur && systemctl suspend
+[[ $(nvidia-smi --query-compute-apps=pid --format=csv,noheader | wc -l) -eq 0 ]] && $HOME/.config/i3/scripts/lock && systemctl suspend

@@ -1,18 +1,20 @@
-" Plugins {{{
+let g:loaded_python_provider = 1
+let g:python3_host_prog = '/home/aye/miniconda3/bin/python'
+
 """"""""""""
 " vim-plug "
 """"""""""""
 
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.local/share/nvim/plugged')
+
 " appereance
-"Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'edkolev/tmuxline.vim'
 Plug 'altercation/vim-colors-solarized'
 
 " snippets and autocomplete
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'honza/vim-snippets'
 Plug 'kristijanhusak/vim-carbon-now-sh'
@@ -46,8 +48,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'qpkorr/vim-bufkill'
 
 " dealing with paired-characters
-Plug 'tpope/vim-surround'
-Plug 'cohama/lexima.vim'
+" Plug 'tpope/vim-surround'
+" Plug 'cohama/lexima.vim'
 
 " syntax checking
 Plug 'w0rp/ale'
@@ -74,17 +76,14 @@ Plug 'tpope/vim-obsession'
 call plug#end()
 
 
-" Leader {{{
 """"""""""
 " Leader "
 """"""""""
 
 let mapleader = ','
-" }}}
 
 
 
-" Plugin Settings {{{
 """""""""""""""""""
 " Plugin Settings "
 """""""""""""""""""
@@ -137,23 +136,6 @@ nmap <Leader>8 <Plug>AirlineSelectTab8
 nmap <Leader>9 <Plug>AirlineSelectTab9
 
 " tmuxline
-"let g:tmuxline_preset = {
-    "\ 'a': ' #S',
-    "\ 'win': ['#I', '#W#F'],
-    "\ 'cwin': ['#I', '#W#F'],
-    "\ 'x': [
-        "\ "C #(uptime | cut -d ' ' -f 14 | tr -d ',')%",
-        "\ "M #(free -h | sed '2!d' | tr -s ' ' | cut -d ' ' -f 3)",
-        "\ "G #(nvidia-smi -q | grep -A3 FB | grep Used | tr -s ' ' | cut -d ' ' -f 4) MiB"],
-    "\ 'y': ' %H:%M',
-    "\ 'z': ' %a, %b %d %Y',
-    "\ 'options': {'status-justify': 'left'}}
-" let g:tmuxline_separators = {
-    "\ 'left': ' ',
-    "\ 'right': ' ',
-    "\ 'left_alt': '|',
-    "\ 'right_alt': '|',
-    "\ 'space': ' '}
  let g:tmuxline_separators = {
     \ 'left': '',
     \ 'right': '',
@@ -183,6 +165,8 @@ let g:UltiSnipsJumpForwardTrigger = '<TAB>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-TAB>'
 
 " camelcasemoving
+omap <silent> iw <Plug>CamelCaseMotion_iw
+xmap <silent> iw <Plug>CamelCaseMotion_iw
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -276,12 +260,11 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 
 " nerdcommenter
+let g:NERDSpaceDelims = 1
 noremap <silent> <Leader>c :call NERDComment(0, "toggle")<CR>
 inoremap <silent> <Leader>c <ESC>:call NERDComment(0, "toggle")<CR>i
 
 " tagbar
-nnoremap <C-\> :TagbarToggle<CR>
-inoremap <C-\> <esc>:TagbarToggle<CR>i
 let g:tagbar_sort = 0
 let g:tagbar_previewwin_pos = ''
 let g:tagbar_iconchars = ['▸', '▾']
@@ -290,22 +273,29 @@ let g:tagbar_map_nexttag = '<TAB>'
 let g:tagbar_map_prevtag = '<S-TAB>'
 let g:tagbar_map_previewwin = '<SPACE>'
 let g:tagbar_map_showproto = 'P'
+nnoremap <C-\> :TagbarToggle<CR>
+inoremap <C-\> <esc>:TagbarToggle<CR>i
 
 " ale
-let g:ale_linters = {
-\   'python': ['flake8'],
-\   'sh': ['shellcheck']
-\}
+let g:ale_linters_explicit = 1
 let g:ale_lint_on_text_changed = 'never'
-let g:ale_sign_error = '◈ '
-let g:ale_sign_warning = '◈ '
+let g:ale_linters = {
+\   'python': ['isort', 'flake8'],
+\   'sh': ['shellcheck'],
+\   'yaml': ['yamllint']
+\}
+let g:ale_fixers = {
+\   'python': ['isort', 'yapf']
+\}
+let g:ale_sign_error = '◈'
+let g:ale_sign_warning = '◈'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nnoremap <silent> <Down> <Plug>(ale_next_wrap)
-nnoremap <silent> <Up> <Plug>(ale_previous_wrap)
-inoremap <silent> <Down> <Plug>(ale_next_wrap)
-inoremap <silent> <Up> <Plug>(ale_previous_wrap)
+nnoremap <silent> <Down> :ALENext<CR>
+nnoremap <silent> <Up> :ALEPrevious<CR>
+inoremap <silent> <Down> <C-o>:ALENext<CR>
+inoremap <silent> <Up> <C-o>:ALEPrevious<CR>
 
 " vim-polyglot
 let g:polyglot_disabled = ['latex']
@@ -318,11 +308,9 @@ let g:polyglot_disabled = ['latex']
 "vmap  <expr>  <UP>     DVB_Drag('up')
 "vmap  <expr>  D        DVB_Duplicate()
 "let g:DVB_TrimWS = 1
-" }}}
 
 
 
-" General Settings {{{
 """"""""""""""""""""
 " General Settings "
 """"""""""""""""""""
@@ -347,7 +335,7 @@ set background=dark
 colorscheme solarized
 
 " line indicators
-set colorcolumn=81
+set colorcolumn=89
 set cursorline
 highlight Normal ctermbg=none
 
@@ -388,33 +376,16 @@ set hidden
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 
-" quit when there's no buffer left
-"autocmd BufDelete * if len(filter(range(1, bufnr('$')), '! empty(bufname(v:val)) && buflisted(v:val)')) == 1 | quit | endif
-" }}}
 
 
 
-" Mappings {{{
 """"""""""""
 " Mappings "
 """"""""""""
 
 " source/edit vimrc
-nnoremap <Leader>sv :source ~/.vimrc<CR>
-nnoremap <silent> <Leader>ev :e ~/.vimrc<CR>
-
-" disable left/right/up/down
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-" for moving out of close bracket
-inoremap <C-r> <Right>
-
+nnoremap <Leader>sv :source ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <Leader>ev :e ~/.config/nvim/init.vim<CR>
 
 " open/save/close buffer
 nnoremap <Leader>e :e<SPACE>
@@ -434,7 +405,7 @@ inoremap <silent> <Left> <ESC>:bp<CR>
 inoremap <silent> <Right> <ESC>:bn<CR>
 
 " escape
-inoremap kj <ESC>
+" inoremap kj <ESC>
 inoremap jk <ESC>
 
 " :->;
@@ -451,9 +422,6 @@ nnoremap <C-b> <C-b>zz
 " move line up/down one line
 nnoremap - ddkP
 nnoremap _ ddp
-
-" add empty line below
-inoremap <C-o> <CR><ESC>ki
 
 " search selected text
 vnoremap // y/<C-R>"<CR>
@@ -486,4 +454,3 @@ nnoremap <silent> <Leader><CR> :nohl<CR>
 
 " toggle paste mode
 nnoremap <silent> <Leader>pp :setlocal paste!<CR>
-" }}}
