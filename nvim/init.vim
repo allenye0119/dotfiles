@@ -260,7 +260,9 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 
 " nerdcommenter
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCustomDelimiters = { 'yaml': { 'left': '# ','right': '' } }
 noremap <silent> <Leader>c :call NERDComment(0, "toggle")<CR>
 inoremap <silent> <Leader>c <ESC>:call NERDComment(0, "toggle")<CR>i
 

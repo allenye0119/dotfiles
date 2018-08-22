@@ -31,9 +31,11 @@
 ## lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
-    'from pathlib import Path',
+    'import re',
     'import json',
-    'import numpy as np'
+    'import pickle',
+    'from pathlib import Path',
+    'import numpy as np',
 ]
 
 ## A list of dotted module names of IPython extensions to load.
@@ -128,7 +130,7 @@ c.InteractiveShellApp.extensions = ['autoreload']
 #------------------------------------------------------------------------------
 
 ## Whether to display a banner upon starting IPython.
-#c.TerminalIPythonApp.display_banner = True
+c.TerminalIPythonApp.display_banner = False
 
 ## If a command or file is given via the command-line, e.g. 'ipython foo.py',
 #  start an interactive shell after executing the file or command.
