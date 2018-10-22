@@ -30,7 +30,7 @@ SPACESHIP_HASKELL_SYMBOL=' '
 SPACESHIP_JOBS_SYMBOL='◈'
 
 # plugins
-plugins=(git tmux solarized-man extract zsh-nvm)
+plugins=(z git tmux solarized-man extract zsh-nvm)
 
 # general
 DISABLE_AUTO_TITLE="true"
@@ -45,6 +45,7 @@ source $ZSH/oh-my-zsh.sh
 export TERM=screen-256color
 export SHELL=/bin/zsh
 export EDITOR=nvim
+export BAT_THEME="Solarized (dark)"
 
 # eval
 if command -v dircolors &> /dev/null; then

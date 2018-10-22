@@ -302,6 +302,11 @@ inoremap <silent> <Up> <C-o>:ALEPrevious<CR>
 " vim-polyglot
 let g:polyglot_disabled = ['latex']
 
+" vimtex
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_latexmk_progname = 'nvr'
+let g:tex_flavor = 'latex'
+
 " dragvisuals
 "source $HOME/.dotfiles/vim/dragvisuals.vim
 "vmap  <expr>  <LEFT>   DVB_Drag('left')
